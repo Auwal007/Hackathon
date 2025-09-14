@@ -64,15 +64,13 @@ export default function HomePage() {
         </header>
 
         <section className="relative overflow-hidden min-h-[85vh] sm:min-h-[90vh] flex items-center bg-black">
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/young-nigerian-artisan-baker-working-confidently-i.jpg"
-              alt="Young Nigerian artisan working confidently"
-              fill
-              className="object-cover opacity-50 sm:opacity-60"
-              priority
-            />
-          </div>
+        <Image
+  src="/young-nigerian-artisan-baker-working-confidently-i.jpg"
+  alt="Young Nigerian artisan working confidently"
+  fill
+  className="object-cover object-top opacity-50 sm:opacity-60" // Crop from top instead of center
+  priority
+/>
           <div className="absolute inset-0 bg-black/70 sm:bg-black/60 z-[1]" />
           <div className="container mx-auto px-4 py-12 sm:py-16 relative z-10">
             <div className="max-w-4xl text-center sm:text-left">
@@ -151,7 +149,7 @@ export default function HomePage() {
               <div className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center lg:space-y-0">
                 <div className="relative">
                   <Image
-                    src="/images/nigerian-student-learning-on-phone.png"
+                    src="/nigerian-student-learning-on-phone.png"
                     alt="Nigerian student learning on phone"
                     width={600}
                     height={400}
