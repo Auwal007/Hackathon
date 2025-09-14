@@ -18,7 +18,14 @@ export const metadata: Metadata = {
     shortcut: "/icon-192x192.jpg",
     apple: "/icon-192x192.jpg",
   },
-  viewport: "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
+}
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  minimumScale: 1,
+  shrinkToFit: "no",
+  viewportFit: "cover",
   themeColor: "#059669",
 }
 

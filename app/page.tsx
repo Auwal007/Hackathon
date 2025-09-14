@@ -151,7 +151,7 @@ export default function HomePage() {
               <div className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center lg:space-y-0">
                 <div className="relative">
                   <Image
-                    src="/nigerian-student-learning-on-phone-in-local-bus-se.jpg"
+                    src="/images/nigerian-student-learning-on-phone.png"
                     alt="Nigerian student learning on phone"
                     width={600}
                     height={400}
