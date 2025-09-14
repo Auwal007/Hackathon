@@ -1,0 +1,27 @@
+{
+  "name": "SkillHub Nigeria - Learn Vocational Skills",
+  "short_name": "SkillHub",
+  "description": "Master practical skills like baking, tailoring, and welding with offline-ready lessons designed for Nigerian learners.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#059669",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.jpg",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512x512.jpg",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["education", "productivity"],
+  "lang": "en",
+  "dir": "ltr"
+}
