@@ -149,7 +149,7 @@ export default function HomePage() {
               <div className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center lg:space-y-0">
                 <div className="relative">
                   <Image
-                    src="/nigerian-student-learning-on-phone.png"
+                    src="/nigerian-student-learning-on-phone.jpg"
                     alt="Nigerian student learning on phone"
                     width={600}
                     height={400}
@@ -513,7 +513,7 @@ export default function HomePage() {
                   </Link>
                 </Button>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-white">
+              {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-white">
                 <div className="text-center">
                   <div className="text-2xl sm:text-3xl font-bold text-white mb-2">10,000+</div>
                   <div className="text-white/80">Active Students</div>
@@ -526,7 +526,7 @@ export default function HomePage() {
                   <div className="text-2xl sm:text-3xl font-bold text-white mb-2">₦500K+</div>
                   <div className="text-white/80">Average Monthly Earnings</div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
