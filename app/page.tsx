@@ -112,20 +112,20 @@ export default function HomePage() {
                   </Link>
                 </Button> */}
               </div>
-              {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-white/90 text-center sm:text-left">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-white/90 text-center sm:text-left">
                 <div className="flex items-center justify-center sm:justify-start gap-2">
-                  <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                  <span className="font-semibold">4.9/5 Rating</span>
+                  <Wifi className="w-5 h-5" />
+                  <span className="font-semibold">Offline‑ready</span>
                 </div>
                 <div className="flex items-center justify-center sm:justify-start gap-2">
-                  <Users className="w-5 h-5" />
-                  <span>10,000+ Students</span>
+                  <BookOpen className="w-5 h-5" />
+                  <span>Practical courses</span>
                 </div>
                 <div className="flex items-center justify-center sm:justify-start gap-2">
-                  <Globe className="w-5 h-5" />
-                  <span>All 36 States</span>
+                  <Trophy className="w-5 h-5" />
+                  <span>Certificates available</span>
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
         </section>
@@ -479,16 +479,12 @@ export default function HomePage() {
           </div>
           <div className="container mx-auto px-4 text-center relative z-10">
             <div className="max-w-4xl mx-auto">
-              <Badge variant="secondary" className="mb-4 sm:mb-6 bg-white/20 text-white border-white/30">
-                Join the Movement
-              </Badge>
               <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white text-balance leading-tight">
-                Your Success Story
-                <span className="block text-yellow-300">Starts Today!</span>
+                Learn practical skills
+                <span className="block text-yellow-300">at your pace.</span>
               </h2>
               <p className="text-lg sm:text-xl lg:text-2xl text-white/90 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed">
-                Join over 10,000 Nigerians who are already building profitable skills and transforming their financial
-                future. No wahala, just results!
+                Build real, income‑friendly skills for life in Nigeria. Simple lessons, offline support, and clear next steps.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-center mb-8 sm:mb-12">
                 <Button
@@ -509,7 +505,7 @@ export default function HomePage() {
                 >
                   <Link href="/about">
                     <Users className="w-5 h-5 mr-2" />
-                    Join Community
+                    About SkillHub
                   </Link>
                 </Button>
               </div>
@@ -624,7 +620,7 @@ export default function HomePage() {
             </div>
             <div className="border-t border-gray-800 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
               <p className="text-gray-400 text-center sm:text-left">
-                © 2024 SkillHub Nigeria. All rights reserved. Built with ❤️ for Nigeria.
+                © 2025 SkillHub Nigeria. All rights reserved. Built with ❤️ for Nigeria.
               </p>
               <div className="flex items-center gap-4 text-gray-400">
                 <span>Made in Nigeria 🇳🇬</span>
