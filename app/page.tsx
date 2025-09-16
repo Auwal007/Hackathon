@@ -100,7 +100,7 @@ export default function HomePage() {
                     Start Learning Free
                   </Link>
                 </Button>
-                <Button
+                {/* <Button
                   size="lg"
                   variant="outline"
                   className="border-white/50 text-white hover:bg-white/10 px-6 py-4 sm:px-8 text-lg bg-transparent w-full sm:w-auto min-h-[56px]"
@@ -110,9 +110,9 @@ export default function HomePage() {
                     Watch Demo
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
-                </Button>
+                </Button> */}
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-white/90 text-center sm:text-left">
+              {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-white/90 text-center sm:text-left">
                 <div className="flex items-center justify-center sm:justify-start gap-2">
                   <Star className="w-5 h-5 text-yellow-400 fill-current" />
                   <span className="font-semibold">4.9/5 Rating</span>
@@ -125,7 +125,7 @@ export default function HomePage() {
                   <Globe className="w-5 h-5" />
                   <span>All 36 States</span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
@@ -149,7 +149,7 @@ export default function HomePage() {
               <div className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center lg:space-y-0">
                 <div className="relative">
                   <Image
-                    src="/nigerian-student-learning-on-phone.jpg"
+                    src="/nigerian-student-learning-on-phone-in-local-bus-se.jpg"
                     alt="Nigerian student learning on phone"
                     width={600}
                     height={400}

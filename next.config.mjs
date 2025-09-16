@@ -9,6 +9,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Force static file regeneration
+  generateEtags: false,
 }
 
 export default nextConfig
