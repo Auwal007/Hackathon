@@ -1,5 +1,28 @@
-const CACHE_NAME = "skillhub-v1"
-const urlsToCache = ["/", "/courses", "/courses/baking", "/offline.html", "/icon-192x192.jpg", "/icon-512x512.jpg"]
+const CACHE_NAME = "skillhub-v2"
+const urlsToCache = [
+  "/",
+  "/courses",
+  "/courses/baking",
+  "/offline.html",
+  "/icon-192x192.jpg",
+  "/icon-512x512.jpg",
+]
+
+// Helper: determine if a request should bypass the SW (Next.js dev assets)
+function shouldBypass(request) {
+  const url = new URL(request.url)
+  // Bypass Next.js dev and build assets, HMR, stack frames, and devtools probes
+  if (
+    url.pathname.startsWith("/_next/") ||
+    url.pathname.startsWith("/__nextjs_original-stack-frame") ||
+    url.pathname.startsWith("/__nextjs_launch-editor") ||
+    url.pathname.startsWith("/__nextjs_testing__/") ||
+    url.pathname.startsWith("/.well-known/appspecific/")
+  ) {
+    return true
+  }
+  return false
+}
 
 // Install event - cache resources
 self.addEventListener("install", (event) => {
@@ -13,15 +36,37 @@ self.addEventListener("install", (event) => {
 
 // Fetch event - serve from cache when offline
 self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      // Return cached version or fetch from network
-      if (response) {
-        return response
-      }
-      return fetch(event.request)
-    }),
-  )
+  const { request } = event
+
+  // Always let Next.js handle its own assets/HMR and dev endpoints
+  if (shouldBypass(request)) {
+    return
+  }
+
+  // Use a network-first strategy with cache fallback for navigations and same-origin GET requests
+  if (request.method === "GET" && new URL(request.url).origin === self.location.origin) {
+    event.respondWith(
+      fetch(request)
+        .then((networkResponse) => {
+          // Cache a copy of successful responses
+          const responseClone = networkResponse.clone()
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone)).catch(() => {})
+          return networkResponse
+        })
+        .catch(async () => {
+          // Fallback to cache when offline
+          const cached = await caches.match(request)
+          if (cached) return cached
+          // If it's a navigation request, serve offline page
+          if (request.mode === "navigate") {
+            const offline = await caches.match("/offline.html")
+            if (offline) return offline
+          }
+          // Otherwise, just rethrow to let the browser handle it
+          throw new Error("Network error and no cache available")
+        }),
+    )
+  }
 })
 
 // Activate event - clean up old caches
