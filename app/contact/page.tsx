@@ -4,10 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Mail, MessageSquare, Phone } from "lucide-react"
 import Link from "next/link"
+import { SiteHeader } from "@/components/site-header"
+import { SiteFooter } from "@/components/site-footer"
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
+      <SiteHeader />
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-3xl sm:text-4xl font-bold">Contact</h1>
@@ -53,6 +56,7 @@ export default function ContactPage() {
           </CardContent>
         </Card>
       </main>
+      <SiteFooter />
     </div>
   )
 }
