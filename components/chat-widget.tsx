@@ -1,27 +1,122 @@
 "use client"
 
-import { useState } from "react"
-import { useChat } from "ai/react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { MessageCircle, X, Send, Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
+type Message = {
+  id: string
+  role: "user" | "assistant"
+  content: string
+}
+
+// Simple markdown-like formatter for chat messages
+const formatMessage = (text: string): string => {
+  return text
+    // Bold text **text** -> <strong>text</strong>
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    // Bullet points * item -> • item
+    .replace(/^\s*\*\s+(.+)$/gm, '• $1')
+    // Line breaks
+    .replace(/\n/g, '<br />')
+    // Code blocks `code` -> <code>code</code>
+    .replace(/`([^`]+)`/g, '<code class="bg-gray-200 px-1 rounded text-xs">$1</code>')
+}
+
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isOnline, setIsOnline] = useState(typeof navigator !== "undefined" ? navigator.onLine : true)
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: "welcome",
+      role: "assistant",
+      content: "Hello! I'm your SkillHub AI assistant. I can help you choose the right vocational skill, explain difficult concepts, or answer questions about our courses. How can I help you today?",
+    },
+  ])
+  const [input, setInput] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const endRef = useRef<HTMLDivElement | null>(null)
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: "/api/chat",
-    initialMessages: [
-      {
-        id: "welcome",
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!input.trim() || isLoading) return
+
+    const userMessage: Message = {
+      id: crypto.randomUUID(),
+      role: "user",
+      content: input.trim(),
+    }
+
+    setMessages(prev => [...prev, userMessage])
+    setInput("")
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messages: [...messages, userMessage].map(m => ({
+            role: m.role,
+            content: m.content,
+          })),
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`)
+      }
+
+      const data = await response.json()
+      const assistantContent = data.choices?.[0]?.message?.content || "Sorry, I couldn't generate a response."
+
+      const assistantMessage: Message = {
+        id: crypto.randomUUID(),
         role: "assistant",
-        content:
-          "Hello! I'm your SkillHub AI assistant. I can help you choose the right vocational skill, explain difficult concepts, or answer questions about our courses. How can I help you today?",
-      },
-    ],
-  })
+        content: assistantContent,
+      }
+
+      setMessages(prev => [...prev, assistantMessage])
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong")
+      const errorMessage: Message = {
+        id: crypto.randomUUID(),
+        role: "assistant",
+        content: "Sorry, I encountered an error. Please try again.",
+      }
+      setMessages(prev => [...prev, errorMessage])
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // Auto-scroll to the latest message
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" })
+  }, [messages, isLoading])
+
+  // Track online/offline status
+  useEffect(() => {
+    function onOnline() {
+      setIsOnline(true)
+    }
+    function onOffline() {
+      setIsOnline(false)
+    }
+    window.addEventListener("online", onOnline)
+    window.addEventListener("offline", onOffline)
+    return () => {
+      window.removeEventListener("online", onOnline)
+      window.removeEventListener("offline", onOffline)
+    }
+  }, [])
 
   return (
     <>
@@ -35,6 +130,7 @@ export function ChatWidget() {
           isOpen && "scale-90",
         )}
         size="icon"
+        aria-label={isOpen ? "Close chat" : "Open chat"}
       >
         {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
       </Button>
@@ -59,6 +155,7 @@ export function ChatWidget() {
               size="sm"
               onClick={() => setIsOpen(false)}
               className="h-8 w-8 p-0 hover:bg-emerald-100"
+              aria-label="Close chat"
             >
               <X className="h-4 w-4" />
             </Button>
@@ -66,6 +163,20 @@ export function ChatWidget() {
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            {!isOnline && (
+              <div className="flex justify-center">
+                <div className="bg-amber-50 text-amber-900 border border-amber-200 rounded-md px-3 py-2 text-xs">
+                  You are offline. You can still read previous messages, but sending may fail.
+                </div>
+              </div>
+            )}
+            {error && (
+              <div className="flex justify-center">
+                <div className="bg-red-50 text-red-900 border border-red-200 rounded-md px-3 py-2 text-xs">
+                  Error: {error}
+                </div>
+              </div>
+            )}
             {messages.map((message) => (
               <div key={message.id} className={cn("flex", message.role === "user" ? "justify-end" : "justify-start")}>
                 <div
@@ -74,7 +185,15 @@ export function ChatWidget() {
                     message.role === "user" ? "bg-emerald-600 text-white" : "bg-gray-100 text-gray-900",
                   )}
                 >
-                  {message.content}
+                  <div 
+                    className={cn(
+                      "leading-relaxed",
+                      message.role === "user" ? "text-white" : "text-gray-900"
+                    )}
+                    dangerouslySetInnerHTML={{ 
+                      __html: formatMessage(message.content) 
+                    }}
+                  />
                 </div>
               </div>
             ))}
@@ -86,6 +205,7 @@ export function ChatWidget() {
                 </div>
               </div>
             )}
+            <div ref={endRef} />
           </div>
 
           {/* Input */}
@@ -93,7 +213,7 @@ export function ChatWidget() {
             <div className="flex gap-2">
               <Input
                 value={input}
-                onChange={handleInputChange}
+                onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask me anything about skills..."
                 className="flex-1 border-emerald-200 focus:border-emerald-500"
                 disabled={isLoading}
