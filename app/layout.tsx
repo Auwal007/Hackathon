@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Suspense } from "react"
 import "./globals.css"
+import { AuthRedirectHandler } from "@/components/auth-redirect-handler"
 
 export const metadata: Metadata = {
   title: "SkillHub Nigeria - Learn Vocational Skills",
@@ -37,7 +38,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Suspense fallback={null}>{children}</Suspense>
+        <Suspense fallback={null}>
+          <AuthRedirectHandler />
+          {children}
+        </Suspense>
       </body>
     </html>
   )

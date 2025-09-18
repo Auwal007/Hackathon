@@ -148,6 +148,12 @@ export default function LoginPage() {
     provider.setCustomParameters({ prompt: "select_account" })
     try {
       await setPersistence(auth, browserLocalPersistence)
+      // On production (Netlify), prefer full-page redirect to avoid popup/cookie issues
+      if (process.env.NODE_ENV === "production") {
+        await signInWithRedirect(auth, provider)
+        return
+      }
+
       const res = await signInWithPopup(auth, provider)
       const u = res.user
       const stored = {
