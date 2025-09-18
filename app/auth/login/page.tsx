@@ -148,12 +148,7 @@ export default function LoginPage() {
     provider.setCustomParameters({ prompt: "select_account" })
     try {
       await setPersistence(auth, browserLocalPersistence)
-      // On production (Netlify), prefer full-page redirect to avoid popup/cookie issues
-      if (process.env.NODE_ENV === "production") {
-        await signInWithRedirect(auth, provider)
-        return
-      }
-
+      // Try popup first, then gracefully fallback to redirect if blocked/unsupported
       const res = await signInWithPopup(auth, provider)
       const u = res.user
       const stored = {
@@ -164,11 +159,16 @@ export default function LoginPage() {
       localStorage.setItem("skillhub_user", JSON.stringify(stored))
       router.push("/courses")
     } catch (err: unknown) {
-      // Fallback to redirect if popup blocked
+      // Fallback to redirect if popup is blocked or environment disallows it
       if (typeof err === "object" && err && "code" in err) {
         const code = (err as { code?: string }).code || ""
-        if (code === "auth/popup-blocked" || code === "auth/popup-closed-by-user") {
+        if (
+          code === "auth/popup-blocked" ||
+          code === "auth/popup-closed-by-user" ||
+          code === "auth/operation-not-supported-in-this-environment"
+        ) {
           try {
+            setInfo("Redirecting to Google…")
             await signInWithRedirect(auth, provider)
             return
           } catch (e) {
@@ -195,6 +195,8 @@ export default function LoginPage() {
           return "Popup was blocked. We’ll try a full-page redirect."
         case "auth/popup-closed-by-user":
           return "Popup closed before completing sign-in."
+        case "auth/operation-not-supported-in-this-environment":
+          return "This browser environment doesn’t support popups. We’ll use a full-page redirect."
         case "auth/cancelled-popup-request":
           return "Popup canceled. Please try again."
         case "auth/network-request-failed":

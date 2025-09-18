@@ -137,10 +137,6 @@ export default function SignupPage() {
     provider.setCustomParameters({ prompt: "select_account" })
     try {
       await setPersistence(auth, browserLocalPersistence)
-      if (process.env.NODE_ENV === "production") {
-        await signInWithRedirect(auth, provider)
-        return
-      }
       const res = await signInWithPopup(auth, provider)
       const u = res.user
       const stored = {
@@ -153,8 +149,13 @@ export default function SignupPage() {
     } catch (err: unknown) {
       if (typeof err === "object" && err && "code" in err) {
         const code = (err as { code?: string }).code || ""
-        if (code === "auth/popup-blocked" || code === "auth/popup-closed-by-user") {
+        if (
+          code === "auth/popup-blocked" ||
+          code === "auth/popup-closed-by-user" ||
+          code === "auth/operation-not-supported-in-this-environment"
+        ) {
           try {
+            setError("")
             await signInWithRedirect(auth, provider)
             return
           } catch (e) {
@@ -181,6 +182,8 @@ export default function SignupPage() {
           return "Popup was blocked. We’ll try a full-page redirect."
         case "auth/popup-closed-by-user":
           return "Popup closed before completing sign-in."
+        case "auth/operation-not-supported-in-this-environment":
+          return "This browser environment doesn’t support popups. We’ll use a full-page redirect."
         case "auth/cancelled-popup-request":
           return "Popup canceled. Please try again."
         case "auth/network-request-failed":
