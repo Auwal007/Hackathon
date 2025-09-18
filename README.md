@@ -14,7 +14,7 @@ This is a Progressive Web App (PWA) for vocational skills training in Nigeria, b
 - **LocalStorage** for client-side state persistence
 
 ### Key Dependencies
-```json
+\`\`\`json
 {
   "ui": "@radix-ui/react-*", "shadcn/ui components",
   "styling": "tailwindcss", "class-variance-authority", "tailwind-merge",
@@ -22,7 +22,7 @@ This is a Progressive Web App (PWA) for vocational skills training in Nigeria, b
   "forms": "react-hook-form", "@hookform/resolvers", "zod",
   "fonts": "geist"
 }
-```
+\`\`\`
 
 ## File Structure Patterns
 
@@ -45,12 +45,12 @@ This is a Progressive Web App (PWA) for vocational skills training in Nigeria, b
 - `useAuth` hook provides user state and logout functionality
 - Auth state stored as JSON in `localStorage.getItem("skillhub_user")`
 
-```tsx
+\`\`\`tsx
 // Auth pattern used throughout app
 <AuthGuard>
   <ProtectedContent />
 </AuthGuard>
-```
+\`\`\`
 
 ### Auth Navigation
 - Unauthorized users redirected to `/auth/login`
@@ -66,7 +66,7 @@ This is a Progressive Web App (PWA) for vocational skills training in Nigeria, b
 - Online/offline status detection with `navigator.onLine`
 
 ### Offline Patterns
-```tsx
+\`\`\`tsx
 // Common offline pattern in course components
 const [isOnline, setIsOnline] = useState(navigator.onLine)
 const [downloadedLessons, setDownloadedLessons] = useState<string[]>([])
@@ -75,7 +75,7 @@ const [downloadedLessons, setDownloadedLessons] = useState<string[]>([])
 const canAccessLesson = (lessonId: string) => {
   return isOnline || downloadedLessons.includes(lessonId)
 }
-```
+\`\`\`
 
 ## UI/UX Conventions
 
@@ -92,7 +92,7 @@ const canAccessLesson = (lessonId: string) => {
 - Mobile navigation with hamburger menu (`MobileNav` component)
 
 ### Layout Patterns
-```tsx
+\`\`\`tsx
 // Typical page structure
 <div className="min-h-screen bg-background">
   <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b">
@@ -105,7 +105,7 @@ const canAccessLesson = (lessonId: string) => {
     </div>
   </main>
 </div>
-```
+\`\`\`
 
 ## Course Management
 

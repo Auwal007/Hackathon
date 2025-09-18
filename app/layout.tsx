@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono"
 import { Suspense } from "react"
 import "./globals.css"
 import { AuthRedirectHandler } from "@/components/auth-redirect-handler"
+import { ChatWidget } from "@/components/chat-widget"
 
 export const metadata: Metadata = {
   title: "SkillHub Nigeria - Learn Vocational Skills",
@@ -41,6 +42,7 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <AuthRedirectHandler />
           {children}
+          <ChatWidget />
         </Suspense>
       </body>
     </html>
