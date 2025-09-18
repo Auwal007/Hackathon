@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 
 export const metadata = {
@@ -9,7 +8,6 @@ export const metadata = {
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-background">
-      <SiteHeader />
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-3xl sm:text-4xl font-bold">Terms of Service</h1>

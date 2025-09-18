@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { RegisterSW } from "./register-sw"
-import { MobileNav } from "@/components/mobile-nav"
 import {
   BookOpen,
   Users,
@@ -28,41 +27,6 @@ export default function HomePage() {
     <>
       <RegisterSW />
       <div className="min-h-screen bg-background">
-        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b">
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between h-16">
-              <Link href="/" className="font-bold text-xl text-emerald-600">
-                SkillHub Nigeria
-              </Link>
-
-              {/* Desktop Navigation */}
-              <nav className="hidden md:flex items-center space-x-8">
-                <Link href="/courses" className="font-medium hover:text-emerald-600 transition-colors">
-                  Courses
-                </Link>
-                <Link href="/about" className="font-medium hover:text-emerald-600 transition-colors">
-                  How It Works
-                </Link>
-                <Link href="/contact" className="font-medium hover:text-emerald-600 transition-colors">
-                  Contact
-                </Link>
-              </nav>
-
-              {/* Desktop Auth Buttons */}
-              <div className="hidden md:flex items-center gap-4">
-                <Link href="/auth/login" className="font-medium hover:text-emerald-600 transition-colors">
-                  Login
-                </Link>
-                <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600" asChild>
-                  <Link href="/auth/signup">Sign Up Free</Link>
-                </Button>
-              </div>
-
-              {/* Mobile Navigation */}
-              <MobileNav />
-            </div>
-          </div>
-        </header>
 
         <section className="relative overflow-hidden min-h-[85vh] sm:min-h-[90vh] flex items-center bg-black">
         <Image
@@ -73,7 +37,7 @@ export default function HomePage() {
   priority
 />
           <div className="absolute inset-0 bg-black/70 sm:bg-black/60 z-[1]" />
-          <div className="container mx-auto px-4 py-12 sm:py-16 relative z-10">
+          <div className="w-full px-4 py-12 sm:py-16 relative z-10 ml-4">
             <div className="max-w-4xl text-center sm:text-left">
               <Badge
                 variant="secondary"
@@ -132,7 +96,7 @@ export default function HomePage() {
         </section>
 
         <section className="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
-          <div className="container mx-auto px-4">
+          <div className="w-full px-4 ml-4">
             <div className="text-center mb-12 sm:mb-16">
               <Badge variant="outline" className="mb-4 text-emerald-600 border-emerald-200">
                 Why Choose SkillHub Nigeria
@@ -298,7 +262,7 @@ export default function HomePage() {
         </section>
 
         <section className="py-16 sm:py-20 bg-white">
-          <div className="container mx-auto px-4">
+          <div className="w-full px-4 ml-4">
             <div className="text-center mb-12 sm:mb-16">
               <Badge variant="outline" className="mb-4 text-emerald-600 border-emerald-200">
                 Popular Courses
@@ -478,7 +442,7 @@ export default function HomePage() {
               }}
             />
           </div>
-          <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="w-full px-4 text-center relative z-10 ml-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white text-balance leading-tight">
                 Learn practical skills

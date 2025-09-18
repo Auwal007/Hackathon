@@ -5,13 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Wifi, Download, BookOpen, Award, Shield, Users } from "lucide-react"
 import Link from "next/link"
-import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
-      <SiteHeader />
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-8">
           <Badge variant="outline" className="mb-3 text-emerald-600 border-emerald-200">About</Badge>

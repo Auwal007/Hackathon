@@ -6,6 +6,7 @@ import { Suspense } from "react"
 import "./globals.css"
 import { AuthRedirectHandler } from "@/components/auth-redirect-handler"
 import { ChatWidget } from "@/components/chat-widget"
+import { SiteHeader } from "@/components/site-header"
 
 export const metadata: Metadata = {
   title: "SkillHub Nigeria - Learn Vocational Skills",
@@ -16,9 +17,9 @@ export const metadata: Metadata = {
   keywords: ["vocational skills", "Nigeria", "baking", "tailoring", "welding", "offline learning"],
   authors: [{ name: "SkillHub Nigeria" }],
   icons: {
-    icon: "/icon-192x192.jpg",
-    shortcut: "/icon-192x192.jpg",
-    apple: "/icon-192x192.jpg",
+    icon: "/skill-hub-logo-removebg-preview.png",
+    shortcut: "/skill-hub-logo-removebg-preview.png",
+    apple: "/skill-hub-logo-removebg-preview.png",
   },
 }
 
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={null}>
           <AuthRedirectHandler />
+          <SiteHeader />
           {children}
           <ChatWidget />
         </Suspense>
