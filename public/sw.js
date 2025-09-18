@@ -4,8 +4,8 @@ const urlsToCache = [
   "/courses",
   "/courses/baking",
   "/offline.html",
-  "/icon-192x192.jpg",
-  "/icon-512x512.jpg",
+  "/skill-hub-logo-removebg-preview.png",
+  "/skill-hub-logo.png",
 ]
 
 // Helper: determine if a request should bypass the SW (Next.js dev assets)
