@@ -35,16 +35,15 @@ export function InnerPageHeader() {
           </nav>
 
           <div className="flex items-center gap-4">
-            {/* <div className="hidden md:flex items-center gap-2 text-sm">
-              <User className="h-4 w-4" />
-              <span>Welcome, {user.name || user.email}</span>
-            </div> */}
-            <div className="hidden md:block">
+            {/* Show UserMenu on all screen sizes */}
+            <div className="block">
               <UserMenu />
             </div>
             
-            {/* Mobile Navigation */}
-            <InnerPageMobileNav />
+            {/* Mobile Navigation - Only show nav links on mobile */}
+            <div className="md:hidden">
+              <InnerPageMobileNav />
+            </div>
           </div>
         </div>
       </div>

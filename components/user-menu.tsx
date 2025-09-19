@@ -27,7 +27,7 @@ export function UserMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="flex items-center gap-2 px-3">
+        <Button variant="ghost" className="flex items-center gap-2 px-3 min-h-[44px]">
           <User className="h-4 w-4" />
           <span className="hidden sm:inline-block font-medium">
             {user.name || user.email}
@@ -35,7 +35,7 @@ export function UserMenu() {
           <ChevronDown className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
+      <DropdownMenuContent align="end" className="w-56 z-[60]" sideOffset={5}>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
