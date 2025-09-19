@@ -2,9 +2,7 @@
 
 import Link from "next/link"
 import { UserMenu } from "@/components/user-menu"
-import { InnerPageMobileNav } from "@/components/inner-page-mobile-nav"
 import { useAuth } from "@/components/auth-guard"
-import { User } from "lucide-react"
 
 export function InnerPageHeader() {
   const { user } = useAuth()
@@ -38,11 +36,6 @@ export function InnerPageHeader() {
             {/* Show UserMenu on all screen sizes */}
             <div className="block">
               <UserMenu />
-            </div>
-            
-            {/* Mobile Navigation - Only show nav links on mobile */}
-            <div className="md:hidden">
-              <InnerPageMobileNav />
             </div>
           </div>
         </div>
