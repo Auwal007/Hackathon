@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { MessageCircle, X, Send, Loader2 } from "lucide-react"
+import { X, Send, Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 type Message = {
@@ -124,15 +124,22 @@ export function ChatWidget() {
       <Button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-lg transition-all duration-300",
-          "bg-emerald-600 hover:bg-emerald-700 text-white",
-          "md:h-16 md:w-16",
-          isOpen && "scale-90",
+          "fixed bottom-6 right-6 z-50 p-0 transition-all duration-300",
+          // Remove any default background/rounded from Button
+          "bg-transparent hover:bg-transparent rounded-none shadow-none h-auto w-auto",
+          isOpen && "opacity-90"
         )}
-        size="icon"
         aria-label={isOpen ? "Close chat" : "Open chat"}
       >
-        {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
+        {isOpen ? (
+          <X className="h-10 w-10 md:h-12 md:w-12 text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]" />
+        ) : (
+          <img
+            src="/chatbot-icon-removebg-preview.png"
+            alt="AI Chat"
+            className="h-20 w-20 md:h-24 md:w-24 object-contain"
+          />
+        )}
       </Button>
 
       {/* Chat Window */}
