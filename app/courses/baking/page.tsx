@@ -41,41 +41,97 @@ function BakingCourseContent() {
   const lessons = [
     {
       id: "lesson-1",
-      title: "Introduction to Baking",
-      description: "Learn the basic principles and essential tools for baking",
-      duration: "15 min",
+      title: "Mise en Place - Everything in Place",
+      description: "Learn the fundamental principle that will set you up for baking success",
+      duration: "6 min",
       type: "video",
       completed: false,
     },
     {
       id: "lesson-2",
-      title: "Understanding Ingredients",
-      description: "Flour, yeast, salt, and water - the foundation of bread",
-      duration: "20 min",
+      title: "Essential Baking Equipment",
+      description: "Learn about the must-have tools and equipment for successful baking",
+      duration: "9 min",
       type: "video",
       completed: false,
     },
     {
       id: "lesson-3",
-      title: "Kneading Techniques",
-      description: "Master the art of kneading dough properly",
-      duration: "25 min",
+      title: "Common Baking Terminology",
+      description: "Master essential baking techniques and terminology for successful baking",
+      duration: "10 min",
       type: "video",
       completed: false,
     },
     {
       id: "lesson-4",
-      title: "Proofing and Rising",
-      description: "How to know when your dough is ready",
-      duration: "18 min",
+      title: "How to Understand and Approach a Recipe",
+      description: "Master the skill of reading, understanding, and properly executing baking recipes",
+      duration: "10 min",
       type: "video",
       completed: false,
     },
     {
       id: "lesson-5",
-      title: "Baking Your First Loaf",
-      description: "Step-by-step guide to baking perfect bread",
-      duration: "30 min",
+      title: "How to Measure for Baking: Weight vs Volume",
+      description: "Master accurate measurement techniques for consistent baking success",
+      duration: "7 min",
+      type: "video",
+      completed: false,
+    },
+    {
+      id: "lesson-6",
+      title: "The Function of Sugar in Baking",
+      description: "Understand how sugar affects structure, texture, and flavor in baked goods",
+      duration: "10 min",
+      type: "video",
+      completed: false,
+    },
+    {
+      id: "lesson-7",
+      title: "The Function of Flour in Baking",
+      description: "Master the most important ingredient in traditional baking and understand different flour types",
+      duration: "10 min",
+      type: "video",
+      completed: false,
+    },
+    {
+      id: "lesson-8",
+      title: "All About Gluten and its Role in Baking",
+      description: "Master gluten development to control texture in all your baked goods",
+      duration: "6 min",
+      type: "video",
+      completed: false,
+    },
+    {
+      id: "lesson-9",
+      title: "All About Leavening in Baking",
+      description: "Understand the science behind what makes baked goods rise and become light",
+      duration: "6 min",
+      type: "video",
+      completed: false,
+    },
+    {
+      id: "lesson-10",
+      title: "All About Eggs and Their Function in Baking",
+      description: "Master the versatile roles of whole eggs, egg whites, and egg yolks in baking",
+      duration: "6 min",
+      type: "video",
+      completed: false,
+    },
+    {
+      id: "lesson-11",
+      title: "All About Fat and its Function in Baking",
+      description: "Master how solid and liquid fats create texture, tenderness, and flavor in baking",
+      duration: "6 min",
+      type: "video",
+      completed: false,
+    },
+    {
+      id: "lesson-12",
+      title: "Ingredient Temperature Guidelines for Baking",
+      description: "Master when to use cold vs room temperature ingredients for perfect results",
+      duration: "8 min",
       type: "video",
       completed: false,
     },
@@ -224,7 +280,7 @@ function BakingCourseContent() {
                 <div>
                   <div className="flex justify-between text-sm mb-2">
                     <span>Completed</span>
-                    <span>0/5 lessons</span>
+                    <span>0/12 lessons</span>
                   </div>
                   <Progress value={0} className="h-2" />
                 </div>
@@ -254,7 +310,7 @@ function BakingCourseContent() {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">Duration</span>
-                  <span className="text-sm">4 hours</span>
+                  <span className="text-sm">6 hours</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">Students</span>
