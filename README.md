@@ -1,154 +1,137 @@
-# SkillHub Nigeria - AI Coding Assistant Instructions
+# SkillHub Nigeria
 
-## Project Overview
-This is a Progressive Web App (PWA) for vocational skills training in Nigeria, built with Next.js 15, TypeScript, and shadcn/ui. The app features offline-first learning with course management, authentication, and mobile-responsive design.
+**Empowering Nigerian Youth Through Accessible Vocational Skills Training**
 
-## Architecture & Tech Stack
+SkillHub Nigeria is a Progressive Web App (PWA) designed to provide high-quality vocational skills training to Nigerian youth and professionals. Our platform offers offline-first learning experiences that work seamlessly across mobile devices, making skills education accessible even in areas with limited internet connectivity.
 
-### Core Technologies
-- **Next.js 15** with App Router (RSC enabled)
-- **TypeScript** with strict mode
-- **Tailwind CSS 4.x** with shadcn/ui components
-- **Radix UI** primitives for accessibility
-- **PWA** with service worker for offline functionality
-- **LocalStorage** for client-side state persistence
+## 🎯 Mission
 
-### Key Dependencies
-\`\`\`json
-{
-  "ui": "@radix-ui/react-*", "shadcn/ui components",
-  "styling": "tailwindcss", "class-variance-authority", "tailwind-merge",
-  "icons": "lucide-react",
-  "forms": "react-hook-form", "@hookform/resolvers", "zod",
-  "fonts": "geist"
-}
-\`\`\`
+To democratize vocational education in Nigeria by providing practical, locally-relevant skills training that empowers individuals to build sustainable careers and contribute to the Nigerian economy.
 
-## File Structure Patterns
+## ✨ Key Features
 
-### App Router Structure
-- `app/` - Next.js 15 App Router with nested routes
-- `app/auth/` - Authentication pages (login/signup)
-- `app/courses/` - Course listings and individual course pages
-- `app/courses/[skill]/lessons/[lessonId]/` - Dynamic lesson routes
+### 📱 **Mobile-First Design**
+- Fully responsive design optimized for smartphones and tablets
+- Progressive Web App (PWA) with offline capabilities
+- Fast loading times and smooth user experience
 
-### Component Organization
-- `components/ui/` - shadcn/ui base components (button, card, input, etc.)
-- `components/` - Custom app components (auth-guard, mobile-nav, theme-provider)
-- `lib/utils.ts` - Utility functions (cn function for className merging)
+### 🌐 **Offline Learning**
+- Download lessons for offline access
+- Continue learning without internet connection
+- Automatic sync when connection is restored
 
-## Authentication Patterns
+### 🔐 **Secure Authentication**
+- User registration and login system
+- Profile management and progress tracking
+- Secure data storage and privacy protection
 
-### Auth Implementation
-- **Client-side only** authentication using localStorage
-- `AuthGuard` component wraps protected routes
-- `useAuth` hook provides user state and logout functionality
-- Auth state stored as JSON in `localStorage.getItem("skillhub_user")`
+### 🎓 **Comprehensive Course Catalog**
+Currently offering courses in:
+- **Baking & Pastry Making** - Learn traditional Nigerian baking techniques and modern pastry skills
+- **Fashion Design & Tailoring** - Master sewing, pattern making, and fashion design
+- **Welding & Metal Work** - Professional welding techniques and safety practices
+- *More skills coming soon...*
 
-\`\`\`tsx
-// Auth pattern used throughout app
-<AuthGuard>
-  <ProtectedContent />
-</AuthGuard>
-\`\`\`
+### 🤖 **AI-Powered Learning Assistant**
+- Integrated chat widget with Nigerian context awareness
+- Personalized learning recommendations
+- Instant answers to course-related questions
+- Cultural and local business insights
 
-### Auth Navigation
-- Unauthorized users redirected to `/auth/login`
-- Auth forms likely use react-hook-form + zod validation
-- No server-side authentication - purely client-side
+### 📊 **Progress Tracking**
+- Track completion status across all courses
+- Quiz assessments to test knowledge
+- Achievement badges and certificates
+- Learning analytics and insights
 
-## PWA & Offline Features
+## 🛠 Technology Stack
 
-### Service Worker Setup
-- `register-sw.js` component registers `/sw.js` on mount
-- Offline-first design with downloadable course content
-- Lesson downloads stored in localStorage as `skillhub_downloaded_lessons`
-- Online/offline status detection with `navigator.onLine`
+- **Frontend**: Next.js 15 with TypeScript
+- **Styling**: Tailwind CSS with shadcn/ui components
+- **Authentication**: Firebase Auth with offline support
+- **AI Integration**: OpenRouter API (DeepSeek Chat)
+- **Deployment**: Netlify with PWA optimization
+- **Storage**: LocalStorage for offline data persistence
 
-### Offline Patterns
-\`\`\`tsx
-// Common offline pattern in course components
-const [isOnline, setIsOnline] = useState(navigator.onLine)
-const [downloadedLessons, setDownloadedLessons] = useState<string[]>([])
+## 🌍 Nigerian Context
 
-// Check if lesson can be accessed offline
-const canAccessLesson = (lessonId: string) => {
-  return isOnline || downloadedLessons.includes(lessonId)
-}
-\`\`\`
+SkillHub Nigeria is built specifically for the Nigerian market with:
 
-## UI/UX Conventions
+- **Local Currency**: All pricing in Nigerian Naira (₦)
+- **Cultural Relevance**: Examples and case studies from Nigerian businesses
+- **Local References**: Content featuring Nigerian locations, materials, and practices
+- **Economic Focus**: Skills aligned with Nigeria's growing economy and job market
+- **Language**: English with Nigerian terminology and expressions
 
-### Design System
-- **Primary color**: Emerald/Green theme (`emerald-500`, `emerald-600`)
-- **Mobile-first** responsive design with breakpoints
-- **shadcn/ui** "new-york" style with neutral base color
-- **Geist font family** (sans & mono variants)
+## 🚀 Getting Started
 
-### Component Patterns
-- Consistent use of `Button`, `Card`, `Badge` from shadcn/ui
-- Icons from `lucide-react` with consistent sizing (`h-4 w-4`, `h-5 w-5`)
-- Color-coded status indicators (green=online, orange=offline, blue=info)
-- Mobile navigation with hamburger menu (`MobileNav` component)
+### For Learners
 
-### Layout Patterns
-\`\`\`tsx
-// Typical page structure
-<div className="min-h-screen bg-background">
-  <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b">
-    {/* Navigation */}
-  </header>
-  <main className="container mx-auto px-4 py-8">
-    <div className="grid lg:grid-cols-3 gap-8">
-      <div className="lg:col-span-2">{/* Main content */}</div>
-      <div>{/* Sidebar */}</div>
-    </div>
-  </main>
-</div>
-\`\`\`
+1. **Sign Up**: Create your free account at [skillhub-ng.netlify.app](https://skillhub-ng.netlify.app)
+2. **Choose a Course**: Browse our catalog and select a skill to learn
+3. **Download for Offline**: Download lessons to your device for offline access
+4. **Start Learning**: Follow structured lessons with hands-on projects
+5. **Get Certified**: Complete quizzes and earn certificates
 
-## Course Management
+### For Developers
 
-### Course Structure
-- Courses are skill-based (baking, tailoring, welding)
-- Lessons within courses have IDs, duration, type, completion status
-- Progress tracking via localStorage
-- Download functionality for offline access
+```bash
+# Clone the repository
+git clone https://github.com/Auwal007/Hackathon.git
 
-### Routing Conventions
-- `/courses` - Course listing
-- `/courses/[skill]` - Individual course (e.g., `/courses/baking`)
-- `/courses/[skill]/lessons/[lessonId]` - Individual lessons
-- `/courses/[skill]/quiz` - Course quizzes
+# Install dependencies
+npm install
 
-## Development Guidelines
+# Set up environment variables
+cp .env.example .env.local
 
-### Build Configuration
-- ESLint and TypeScript errors ignored in builds (`ignoreDuringBuilds: true`)
-- Images unoptimized (`unoptimized: true`)
-- PWA manifest at `/manifest.json`
+# Run development server
+npm run dev
+```
 
-### State Management
-- **No global state library** - uses React state + localStorage
-- Client-side persistence for user auth, course progress, downloads
-- Online/offline status tracking in course components
+## 📋 Prerequisites
 
-### Styling Approach
-- Tailwind utility classes with `cn()` helper for conditional styling
-- Component variants using `class-variance-authority`
-- Consistent spacing, typography, and color system
-- Mobile-responsive with `sm:`, `lg:` breakpoints
+- Node.js 18+ 
+- npm or pnpm
+- Firebase project (for authentication)
+- OpenRouter API key (for AI features)
 
-## Nigerian Context
-- Content focused on Nigerian learners and local economy
-- References to Nigerian states, culture, and business environment
-- Naira currency formatting where applicable
-- Local imagery and culturally relevant examples
+## 🌟 Why SkillHub Nigeria?
 
-When working on this codebase:
-1. Follow the established PWA offline-first patterns
-2. Use shadcn/ui components consistently
-3. Maintain the Nigerian cultural context in content
-4. Ensure mobile responsiveness for all features
-5. Use localStorage for client-side persistence
-6. Follow the course → lesson → quiz routing structure
+### **Addressing Real Challenges**
+- High youth unemployment in Nigeria (33.1% as of 2024)
+- Limited access to quality vocational training
+- Expensive traditional training programs
+- Poor internet connectivity in rural areas
+
+### **Our Solution**
+- Free and affordable courses
+- Mobile-optimized for widespread smartphone usage
+- Offline functionality for unreliable internet
+- Local content and business context
+- AI-powered personalized learning
+
+### **Impact Goals**
+- Train 10,000+ Nigerians in marketable skills by 2026
+- Create pathways to entrepreneurship and employment
+- Support Nigeria's digital economy growth
+- Reduce skills gap in key industries
+
+## 🤝 Contributing
+
+We welcome contributions from developers, educators, and industry experts! See our [Contributing Guide](.github/CONTRIBUTING.md) for details.
+
+## 📞 Contact & Support
+
+- **Website**: [skillhub-ng.netlify.app](https://skillhub-ng.netlify.app)
+- **Email**: support@skillhub.ng
+- **GitHub**: [github.com/Auwal007/Hackathon](https://github.com/Auwal007/Hackathon)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+**Building Nigeria's Future, One Skill at a Time** 🇳🇬
+
