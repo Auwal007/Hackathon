@@ -313,13 +313,6 @@ function BakingCourseContent() {
                   <span className="text-sm">6 hours</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">Students</span>
-                  <div className="flex items-center gap-1">
-                    <Users className="h-4 w-4" />
-                    <span className="text-sm">1,250</span>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">Rating</span>
                   <div className="flex items-center gap-1">
                     <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />

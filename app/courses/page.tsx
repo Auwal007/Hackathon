@@ -20,7 +20,6 @@ function CoursesContent() {
       icon: ChefHat,
       lessons: 12,
       duration: "4 hours",
-      students: 1250,
       rating: 4.8,
       progress: 0,
       available: true,
@@ -33,7 +32,6 @@ function CoursesContent() {
       icon: Scissors,
       lessons: 18,
       duration: "6 hours",
-      students: 890,
       rating: 4.9,
       progress: 0,
       available: false,
@@ -46,7 +44,6 @@ function CoursesContent() {
       icon: Wrench,
       lessons: 15,
       duration: "5 hours",
-      students: 650,
       rating: 4.7,
       progress: 0,
       available: false,
@@ -141,14 +138,6 @@ function CoursesContent() {
                     <div className="space-y-3 mb-4">
                       <div className="flex items-center justify-between text-sm text-muted-foreground">
                         <span>{course.lessons} lessons</span>
-                        <span>{course.duration}</span>
-                      </div>
-
-                      <div className="flex items-center justify-between text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Users className="h-4 w-4" />
-                          <span>{course.students.toLocaleString()} students</span>
-                        </div>
                         <div className="flex items-center gap-1">
                           <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                           <span>{course.rating}</span>

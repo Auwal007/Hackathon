@@ -317,7 +317,7 @@ export default function HomePage() {
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
                       <span className="font-semibold">4.9</span>
-                      <span className="text-muted-foreground">(2,341)</span>
+                      {/* <span className="text-muted-foreground">(2,341)</span> */}
                     </div>
                     <Button className="bg-emerald-500 hover:bg-emerald-600 w-full sm:w-auto min-h-[44px]" asChild>
                       <Link href="/courses/baking">Start Course</Link>
