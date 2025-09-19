@@ -127,17 +127,23 @@ export function ChatWidget() {
           "fixed bottom-6 right-6 z-50 p-0 transition-all duration-300",
           // Remove any default background/rounded from Button
           "bg-transparent hover:bg-transparent rounded-none shadow-none h-auto w-auto",
+          // Add hover animations and shadow
+          "hover:scale-110 transform hover:drop-shadow-2xl",
+          "drop-shadow-lg",
           isOpen && "opacity-90"
         )}
         aria-label={isOpen ? "Close chat" : "Open chat"}
       >
         {isOpen ? (
-          <X className="h-10 w-10 md:h-12 md:w-12 text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]" />
+          <X className="h-12 w-12 md:h-14 md:w-14 text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)] transition-transform duration-200" />
         ) : (
           <img
             src="/chatbot-icon-removebg-preview.png"
             alt="AI Chat"
-            className="h-20 w-20 md:h-24 md:w-24 object-contain"
+            className="h-28 w-28 md:h-32 md:w-32 object-contain transition-all duration-500 hover:scale-110 animate-pulse"
+            style={{
+              animation: 'float 3s ease-in-out infinite, pulse 2s ease-in-out infinite',
+            }}
           />
         )}
       </Button>

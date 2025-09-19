@@ -123,3 +123,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom animations for chat widget */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(5, 150, 105, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(5, 150, 105, 0.8);
+  }
+}
