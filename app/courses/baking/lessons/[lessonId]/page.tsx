@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AuthGuard } from "@/components/auth-guard"
+import { InnerPageHeader } from "@/components/inner-page-header"
 import { ArrowLeft, ArrowRight, CheckCircle, Clock, WifiOff, Lightbulb } from "lucide-react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
@@ -128,7 +129,10 @@ function LessonContent() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-card sticky top-0 z-10">
+      <InnerPageHeader />
+      
+      {/* Lesson Sub-Header */}
+      <div className="border-b bg-card/50 sticky top-16 z-10">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Button variant="ghost" size="sm" asChild>
@@ -148,7 +152,7 @@ function LessonContent() {
             </div>
           </div>
         </div>
-      </header>
+      </div>
 
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">

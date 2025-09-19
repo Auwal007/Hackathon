@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { AuthGuard, useAuth } from "@/components/auth-guard"
+import { InnerPageHeader } from "@/components/inner-page-header"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { ChefHat, ArrowLeft, Play, Download, CheckCircle, Clock, Users, Star, Wifi, WifiOff } from "lucide-react"
 import Link from "next/link"
@@ -101,7 +102,10 @@ function BakingCourseContent() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-card">
+      <InnerPageHeader />
+      
+      {/* Course Sub-Header */}
+      <div className="border-b bg-card/50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -131,7 +135,7 @@ function BakingCourseContent() {
             </div>
           </div>
         </div>
-      </header>
+      </div>
 
       <div className="container mx-auto px-4 py-8">
         {/* Course Overview */}

@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { AuthGuard } from "@/components/auth-guard"
+import { InnerPageHeader } from "@/components/inner-page-header"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { ArrowLeft, ArrowRight, CheckCircle, X, Trophy, Star, Clock, Target } from "lucide-react"
 import Link from "next/link"
@@ -175,7 +176,8 @@ function QuizContent() {
   if (!quizStarted) {
     return (
       <div className="min-h-screen bg-background">
-        <header className="border-b bg-card">
+        <InnerPageHeader />
+        <div className="border-b bg-card/50">
           <div className="container mx-auto px-4 py-4">
             <Button variant="ghost" size="sm" asChild>
               <Link href="/courses/baking">
@@ -184,7 +186,7 @@ function QuizContent() {
               </Link>
             </Button>
           </div>
-        </header>
+        </div>
 
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-2xl mx-auto text-center">
@@ -244,7 +246,8 @@ function QuizContent() {
 
     return (
       <div className="min-h-screen bg-background">
-        <header className="border-b bg-card">
+        <InnerPageHeader />
+        <div className="border-b bg-card/50">
           <div className="container mx-auto px-4 py-4">
             <Button variant="ghost" size="sm" asChild>
               <Link href="/courses/baking">
@@ -253,7 +256,7 @@ function QuizContent() {
               </Link>
             </Button>
           </div>
-        </header>
+        </div>
 
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-3xl mx-auto">
@@ -349,7 +352,8 @@ function QuizContent() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b bg-card sticky top-0 z-10">
+      <InnerPageHeader />
+      <div className="border-b bg-card/50 sticky top-16 z-10">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Button variant="ghost" size="sm" asChild>
@@ -372,7 +376,7 @@ function QuizContent() {
             <Progress value={progress} className="h-2" />
           </div>
         </div>
-      </header>
+      </div>
 
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">

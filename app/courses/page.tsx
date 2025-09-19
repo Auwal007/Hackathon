@@ -5,11 +5,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { AuthGuard, useAuth } from "@/components/auth-guard"
-import { ChefHat, Scissors, Wrench, Clock, Users, Star, LogOut, User } from "lucide-react"
+import { InnerPageHeader } from "@/components/inner-page-header"
+import { ChefHat, Scissors, Wrench, Clock, Users, Star } from "lucide-react"
 import Link from "next/link"
 
 function CoursesContent() {
-  const { user, logout } = useAuth()
+  const { user } = useAuth()
 
   const courses = [
     {
@@ -56,27 +57,7 @@ function CoursesContent() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-card">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <Link href="/" className="text-2xl font-bold text-primary">
-                SkillHub Nigeria
-              </Link>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 text-sm">
-                <User className="h-4 w-4" />
-                <span>Welcome, {user?.name}</span>
-              </div>
-              <Button variant="outline" size="sm" onClick={logout}>
-                <LogOut className="h-4 w-4 mr-2" />
-                Logout
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
+      <InnerPageHeader />
 
       <div className="container mx-auto px-4 py-8">
         {/* Welcome Section */}

@@ -6,7 +6,7 @@ import { Suspense } from "react"
 import "./globals.css"
 import { AuthRedirectHandler } from "@/components/auth-redirect-handler"
 import { ChatWidget } from "@/components/chat-widget"
-import { SiteHeader } from "@/components/site-header"
+import { HeaderSwitcher } from "@/components/header-switcher"
 
 export const metadata: Metadata = {
   title: "SkillHub Nigeria - Learn Vocational Skills",
@@ -42,7 +42,7 @@ export default function RootLayout({
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={null}>
           <AuthRedirectHandler />
-          <SiteHeader />
+          <HeaderSwitcher />
           {children}
           <ChatWidget />
         </Suspense>
