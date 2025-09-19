@@ -37,7 +37,7 @@ export default function HomePage() {
   priority
 />
           <div className="absolute inset-0 bg-black/70 sm:bg-black/60 z-[1]" />
-          <div className="w-full px-4 py-12 sm:py-16 relative z-10 ml-4">
+          <div className="container mx-auto px-4 py-12 sm:py-16 relative z-10">
             <div className="max-w-4xl text-center sm:text-left">
               <Badge
                 variant="secondary"
@@ -96,7 +96,7 @@ export default function HomePage() {
         </section>
 
         <section className="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
-          <div className="w-full px-4 ml-4">
+          <div className="container mx-auto px-4">
             <div className="text-center mb-12 sm:mb-16">
               <Badge variant="outline" className="mb-4 text-emerald-600 border-emerald-200">
                 Why Choose SkillHub Nigeria
@@ -262,7 +262,7 @@ export default function HomePage() {
         </section>
 
         <section className="py-16 sm:py-20 bg-white">
-          <div className="w-full px-4 ml-4">
+          <div className="container mx-auto px-4">
             <div className="text-center mb-12 sm:mb-16">
               <Badge variant="outline" className="mb-4 text-emerald-600 border-emerald-200">
                 Popular Courses
@@ -442,7 +442,7 @@ export default function HomePage() {
               }}
             />
           </div>
-          <div className="w-full px-4 text-center relative z-10 ml-4">
+          <div className="container mx-auto px-4 text-center relative z-10">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white text-balance leading-tight">
                 Learn practical skills

@@ -1,154 +1,64 @@
-# SkillHub Nigeria - AI Coding Assistant Instructions
+# AI Coding Agents: Working in this Repo
 
-## Project Overview
-This is a Progressive Web App (PWA) for vocational skills training in Nigeria, built with Next.js 15, TypeScript, and shadcn/ui. The app features offline-first learning with course management, authentication, and mobile-responsive design.
+This doc gives you the minimum you need to ship changes quickly and correctly in this codebase. Keep it short, concrete, and specific to this project.
 
-## Architecture & Tech Stack
+## Architecture (Next.js App Router, PWA, Firebase)
+- Next.js 15 (App Router) with TypeScript. Global layout in `app/layout.tsx`; routes under `app/**`. UI is client-heavy but some routes use RSC by default.
+- Styling: Tailwind CSS + shadcn/ui (see `components/ui/*`) and `cn()` helper in `lib/utils.ts`.
+- Auth: Firebase client auth with an offline mirror. Online → Firebase (`onAuthStateChanged`); offline → read `localStorage.skillhub_user`. See `components/auth-guard.tsx` and `app/firebase/config.js`.
+- AI: Chat endpoint `app/api/chat/route.ts` calls OpenRouter (`deepseek/deepseek-chat-v3.1:free`) with a strong Nigerian-context system prompt. Client widget is `components/chat-widget.tsx`.
+- PWA/offline: Service worker registered by `app/register-sw.js` (only in production). Worker at `public/sw.js` uses network-first with cache fallback; additional offline UI logic in courses.
 
-### Core Technologies
-- **Next.js 15** with App Router (RSC enabled)
-- **TypeScript** with strict mode
-- **Tailwind CSS 4.x** with shadcn/ui components
-- **Radix UI** primitives for accessibility
-- **PWA** with service worker for offline functionality
-- **LocalStorage** for client-side state persistence
+## Local dev, build, deploy
+- Scripts (package.json): `dev` → Next dev, `build` → Next build, `start` → Next start, `lint` → Next lint.
+- TypeScript/ESLint errors won’t block builds (see `next.config.mjs`). Don’t rely on this to merge broken code; keep types green locally.
+- Netlify deploy uses `npm run build` with Node 20 (`netlify.toml`). Images are unoptimized; static regeneration etags disabled.
+- Env vars needed for features:
+  - Firebase (client): `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`, `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`, `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`, `NEXT_PUBLIC_FIREBASE_APP_ID`.
+  - Chat API: `OPENROUTER_API_KEY` (server). Optionally `OPENROUTER_SITE_URL`, `OPENROUTER_SITE_NAME`.
 
-### Key Dependencies
-\`\`\`json
-{
-  "ui": "@radix-ui/react-*", "shadcn/ui components",
-  "styling": "tailwindcss", "class-variance-authority", "tailwind-merge",
-  "icons": "lucide-react",
-  "forms": "react-hook-form", "@hookform/resolvers", "zod",
-  "fonts": "geist"
-}
-\`\`\`
+## Conventions and patterns
+- Auth-protected pages wrap content with `AuthGuard`. Example:
+  - `app/courses/page.tsx`, `app/courses/baking/page.tsx`, lessons/quiz pages. Use `useAuth()` for user and `logout()`.
+- Offline-aware UX pattern:
+  - Track `navigator.onLine`; persist lesson downloads in `localStorage.skillhub_downloaded_lessons`.
+  - Gate lesson access with `isOnline || downloadedLessons.includes(lessonId)`.
+  - Show badges/alerts for Online/Offline; favor simple localStorage over complex caching.
+- UI components: Prefer shadcn/ui primitives in `components/ui/*` (Button, Card, Badge, Progress, Input, etc.), and icons from `lucide-react`. Keep sizes consistent (`h-4 w-4`, `h-5 w-5`).
+- Layout: `HeaderSwitcher` and `ChatWidget` are injected globally in `app/layout.tsx`. Pages should focus on main content only.
+- Styling: Tailwind with design tokens via CSS vars (see `tailwind.config.js`). Use `cn()` for conditional classes and respect established color roles (primary/secondary/accent, etc.).
+- Routing: Course structure uses nested routes like `/courses/[skill]/lessons/[lessonId]` and `/courses/[skill]/quiz`. Keep this shape when adding new skills.
+- Content voice: Nigerian context. Prices in NGN (₦), examples/local terms (Ankara, Agege, PHCN). The chat system prompt codifies tone—mirror it in content.
 
-## File Structure Patterns
+## Integration points
+- Chat API contract (`/api/chat`):
+  - Request: `{ messages: Array<{ role: 'user'|'assistant'|'system', content: string }> }`
+  - Response: OpenAI-style: `{ choices: [{ message: { content: string } }] }` (non-streaming).
+  - Failure path is normalized to 200 with an error message when `OPENROUTER_API_KEY` is missing or upstream fails. Handle defensively on client.
+- Firebase: Only client SDK is initialized. No server-side admin SDK. Don’t add server-only Firebase without confirming hosting/runtime constraints.
+- Service worker: Add new cache URLs in `public/sw.js` `urlsToCache`. Skip Next dev assets via `shouldBypass()`.
 
-### App Router Structure
-- `app/` - Next.js 15 App Router with nested routes
-- `app/auth/` - Authentication pages (login/signup)
-- `app/courses/` - Course listings and individual course pages
-- `app/courses/[skill]/lessons/[lessonId]/` - Dynamic lesson routes
+## Examples from the codebase
+- Protect a page:
+  - Wrap default export with `<AuthGuard>…</AuthGuard>` and read auth via `useAuth()`.
+- Add an offline-capable lesson:
+  - Persist downloaded lesson IDs to `localStorage.skillhub_downloaded_lessons`.
+  - Render Start button disabled when offline and not downloaded; enable when downloaded.
+- Use the chat API from a component:
+  - POST to `/api/chat` with the existing message history; render `data.choices[0].message.content`.
 
-### Component Organization
-- `components/ui/` - shadcn/ui base components (button, card, input, etc.)
-- `components/` - Custom app components (auth-guard, mobile-nav, theme-provider)
-- `lib/utils.ts` - Utility functions (cn function for className merging)
+## Pitfalls to avoid
+- Don’t assume server streaming; chat is non-streaming by design.
+- Don’t break global layout by removing `AuthRedirectHandler`, `HeaderSwitcher`, or `ChatWidget` from `app/layout.tsx`.
+- Don’t introduce server-only Node APIs into client components.
+- Keep TypeScript strict-friendly even though builds ignore errors.
 
-## Authentication Patterns
+## Where to look
+- Pages & routes: `app/**`
+- UI primitives: `components/ui/*`
+- Auth & redirects: `components/auth-guard.tsx`, `components/auth-redirect-handler.tsx`
+- AI chat: `app/api/chat/route.ts`, `components/chat-widget.tsx`
+- PWA: `app/register-sw.js`, `public/sw.js`, `public/offline.html`, `public/manifest.json`
+- Config: `next.config.mjs`, `tailwind.config.js`, `netlify.toml`, `tsconfig.json`
 
-### Auth Implementation
-- **Client-side only** authentication using localStorage
-- `AuthGuard` component wraps protected routes
-- `useAuth` hook provides user state and logout functionality
-- Auth state stored as JSON in `localStorage.getItem("skillhub_user")`
-
-\`\`\`tsx
-// Auth pattern used throughout app
-<AuthGuard>
-  <ProtectedContent />
-</AuthGuard>
-\`\`\`
-
-### Auth Navigation
-- Unauthorized users redirected to `/auth/login`
-- Auth forms likely use react-hook-form + zod validation
-- No server-side authentication - purely client-side
-
-## PWA & Offline Features
-
-### Service Worker Setup
-- `register-sw.js` component registers `/sw.js` on mount
-- Offline-first design with downloadable course content
-- Lesson downloads stored in localStorage as `skillhub_downloaded_lessons`
-- Online/offline status detection with `navigator.onLine`
-
-### Offline Patterns
-\`\`\`tsx
-// Common offline pattern in course components
-const [isOnline, setIsOnline] = useState(navigator.onLine)
-const [downloadedLessons, setDownloadedLessons] = useState<string[]>([])
-
-// Check if lesson can be accessed offline
-const canAccessLesson = (lessonId: string) => {
-  return isOnline || downloadedLessons.includes(lessonId)
-}
-\`\`\`
-
-## UI/UX Conventions
-
-### Design System
-- **Primary color**: Emerald/Green theme (`emerald-500`, `emerald-600`)
-- **Mobile-first** responsive design with breakpoints
-- **shadcn/ui** "new-york" style with neutral base color
-- **Geist font family** (sans & mono variants)
-
-### Component Patterns
-- Consistent use of `Button`, `Card`, `Badge` from shadcn/ui
-- Icons from `lucide-react` with consistent sizing (`h-4 w-4`, `h-5 w-5`)
-- Color-coded status indicators (green=online, orange=offline, blue=info)
-- Mobile navigation with hamburger menu (`MobileNav` component)
-
-### Layout Patterns
-\`\`\`tsx
-// Typical page structure
-<div className="min-h-screen bg-background">
-  <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b">
-    {/* Navigation */}
-  </header>
-  <main className="container mx-auto px-4 py-8">
-    <div className="grid lg:grid-cols-3 gap-8">
-      <div className="lg:col-span-2">{/* Main content */}</div>
-      <div>{/* Sidebar */}</div>
-    </div>
-  </main>
-</div>
-\`\`\`
-
-## Course Management
-
-### Course Structure
-- Courses are skill-based (baking, tailoring, welding)
-- Lessons within courses have IDs, duration, type, completion status
-- Progress tracking via localStorage
-- Download functionality for offline access
-
-### Routing Conventions
-- `/courses` - Course listing
-- `/courses/[skill]` - Individual course (e.g., `/courses/baking`)
-- `/courses/[skill]/lessons/[lessonId]` - Individual lessons
-- `/courses/[skill]/quiz` - Course quizzes
-
-## Development Guidelines
-
-### Build Configuration
-- ESLint and TypeScript errors ignored in builds (`ignoreDuringBuilds: true`)
-- Images unoptimized (`unoptimized: true`)
-- PWA manifest at `/manifest.json`
-
-### State Management
-- **No global state library** - uses React state + localStorage
-- Client-side persistence for user auth, course progress, downloads
-- Online/offline status tracking in course components
-
-### Styling Approach
-- Tailwind utility classes with `cn()` helper for conditional styling
-- Component variants using `class-variance-authority`
-- Consistent spacing, typography, and color system
-- Mobile-responsive with `sm:`, `lg:` breakpoints
-
-## Nigerian Context
-- Content focused on Nigerian learners and local economy
-- References to Nigerian states, culture, and business environment
-- Naira currency formatting where applicable
-- Local imagery and culturally relevant examples
-
-When working on this codebase:
-1. Follow the established PWA offline-first patterns
-2. Use shadcn/ui components consistently
-3. Maintain the Nigerian cultural context in content
-4. Ensure mobile responsiveness for all features
-5. Use localStorage for client-side persistence
-6. Follow the course → lesson → quiz routing structure
+If anything here is unclear or missing (e.g., additional skills, data models, or backend plans), tell us what you need and propose the minimal change to keep consistency with these patterns.

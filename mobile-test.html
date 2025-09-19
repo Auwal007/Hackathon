@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Responsiveness Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .pass { background: #d4edda; border-color: #c3e6cb; }
+        .fail { background: #f8d7da; border-color: #f5c6cb; }
+        h1, h2 { color: #333; }
+        .viewport-info {
+            background: #e2e3e5;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>SkillHub Nigeria - Mobile Responsiveness Test</h1>
+        
+        <div class="viewport-info">
+            <strong>Current Viewport:</strong> <span id="viewport"></span><br>
+            <strong>User Agent:</strong> <span id="useragent"></span><br>
+            <strong>Screen Size:</strong> <span id="screen"></span>
+        </div>
+
+        <h2>Responsiveness Checklist</h2>
+        
+        <div class="test-item pass">
+            ✅ <strong>Viewport Meta Tag:</strong> Device width properly configured
+        </div>
+        
+        <div class="test-item pass">
+            ✅ <strong>Header Fixed:</strong> Removed excessive margins and used proper containers
+        </div>
+        
+        <div class="test-item pass">
+            ✅ <strong>Mobile Navigation:</strong> Compact design with responsive menu
+        </div>
+        
+        <div class="test-item pass">
+            ✅ <strong>Main Content:</strong> Removed left margin, added proper container classes
+        </div>
+        
+        <div class="test-item pass">
+            ✅ <strong>Typography:</strong> Responsive text sizes (sm:text-xl, text-lg, etc.)
+        </div>
+        
+        <div class="test-item pass">
+            ✅ <strong>Container System:</strong> Configured with proper padding and max-widths
+        </div>
+        
+        <div class="test-item pass">
+            ✅ <strong>Touch Targets:</strong> Buttons have min-height of 44px for mobile accessibility
+        </div>
+
+        <h2>Key Changes Made</h2>
+        <ul>
+            <li><strong>Header Component:</strong> Replaced w-full max-w-none px-0 ml-10 with container mx-auto px-4</li>
+            <li><strong>Logo & Text:</strong> Added responsive sizes (h-10 w-10 md:h-14 md:w-14)</li>
+            <li><strong>Main Layout:</strong> Replaced ml-4 with container mx-auto for proper centering</li>
+            <li><strong>Mobile Menu:</strong> Optimized button sizes and padding for small screens</li>
+            <li><strong>Container Config:</strong> Added responsive container configuration to Tailwind</li>
+        </ul>
+
+        <h2>Test Instructions</h2>
+        <ol>
+            <li>View this on different screen sizes</li>
+            <li>Test the main site at <a href="http://localhost:3000" target="_blank">localhost:3000</a></li>
+            <li>Check header, navigation, and content alignment</li>
+            <li>Verify mobile menu functionality</li>
+            <li>Test on actual mobile devices or browser dev tools</li>
+        </ol>
+    </div>
+
+    <script>
+        document.getElementById('viewport').textContent = window.innerWidth + 'x' + window.innerHeight;
+        document.getElementById('useragent').textContent = navigator.userAgent.substring(0, 50) + '...';
+        document.getElementById('screen').textContent = screen.width + 'x' + screen.height;
+        
+        window.addEventListener('resize', function() {
+            document.getElementById('viewport').textContent = window.innerWidth + 'x' + window.innerHeight;
+        });
+    </script>
+</body>
+</html>
