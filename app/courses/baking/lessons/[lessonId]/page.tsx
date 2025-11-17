@@ -1788,8 +1788,8 @@ function LessonContent() {
       {/* Header */}
       <InnerPageHeader />
       
-      {/* Lesson Sub-Header */}
-      <div className="border-b bg-card/50 sticky top-16 z-10">
+      {/* Lesson Sub-Header - Fixed Navigation */}
+      <div className="border-b bg-card/50 fixed top-20 left-0 right-0 z-40">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Button variant="ghost" size="sm" asChild>
@@ -1811,7 +1811,7 @@ function LessonContent() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 pt-32">
         <div className="max-w-4xl mx-auto">
           {/* Lesson Header */}
           <div className="mb-8">
