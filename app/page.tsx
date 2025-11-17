@@ -22,6 +22,15 @@ import Link from "next/link"
 import Image from "next/image"
 import { SiteFooter } from "@/components/site-footer"
 
+// 1. Import the font from Google
+import { Lora } from 'next/font/google'
+
+// 2. Configure it
+const lora = Lora({ 
+  subsets: ['latin'],
+  weight: ['400', '500'], // Import the weights you need
+})
+
 export default function HomePage() {
   return (
     <>
@@ -50,7 +59,8 @@ export default function HomePage() {
                 Transform Your Future with
                 <span className="text-emerald-400 block mt-1 sm:mt-2">Nigerian Skills</span>
               </h1>
-              <p className="text-lg sm:text-xl lg:text-2xl text-gray-200 text-pretty mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+              <p 
+              className={`${lora.className} text-lg sm:text-xl lg:text-2xl text-gray-200 text-pretty mb-8 sm:mb-10 max-w-3xl leading-relaxed`}>
                 Master income-generating trades like baking, tailoring, and welding through expert-led lessons. Built
                 for Nigeria, works everywhere - even offline!
               </p>
@@ -80,15 +90,15 @@ export default function HomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-white/90 text-center sm:text-left">
                 <div className="flex items-center justify-center sm:justify-start gap-2">
                   <Wifi className="w-5 h-5" />
-                  <span className="font-semibold">Offline‑ready</span>
+                  <span className={`${lora.className}`}>Offline‑ready</span>
                 </div>
                 <div className="flex items-center justify-center sm:justify-start gap-2">
                   <BookOpen className="w-5 h-5" />
-                  <span>Practical courses</span>
+                  <span className={`${lora.className}`}>Practical courses</span>
                 </div>
                 <div className="flex items-center justify-center sm:justify-start gap-2">
                   <Trophy className="w-5 h-5" />
-                  <span>Certificates available</span>
+                  <span className={`${lora.className}`}>Certificates available</span>
                 </div>
               </div>
             </div>

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-const MODEL = "deepseek/deepseek-chat-v3.1:free"
+const MODEL = "moonshotai/kimi-k2:free"
 
 // System prompt to steer the assistant across primary functions with Nigerian context
 const SYSTEM_PROMPT = `
