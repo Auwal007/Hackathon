@@ -1,508 +1,311 @@
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { RegisterSW } from "./register-sw"
-import {
-  BookOpen,
-  Users,
-  Wifi,
-  Award,
-  ChefHat,
-  Scissors,
-  Wrench,
-  Star,
-  Play,
-  ArrowRight,
-  CheckCircle,
-  Globe,
-  Clock,
-  Trophy,
-} from "lucide-react"
+import { Download, Smartphone, Globe, CheckCircle, ArrowRight, Star, Shield, Zap, Users } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { SiteFooter } from "@/components/site-footer"
-
-// 1. Import the font from Google
-import { Lora } from 'next/font/google'
-
-// 2. Configure it
-const lora = Lora({ 
-  subsets: ['latin'],
-  weight: ['400', '500'], // Import the weights you need
-})
 
 export default function HomePage() {
   return (
     <>
       <RegisterSW />
-      <div className="min-h-screen bg-background">
-
-        <section className="relative overflow-hidden min-h-[85vh] sm:min-h-[90vh] flex items-center bg-black">
-        <Image
-  src="/young-nigerian-artisan-baker-working-confidently-i.jpg"
-  alt="Young Nigerian artisan working confidently"
-  fill
-  className="object-cover object-top opacity-50 sm:opacity-60" // Crop from top instead of center
-  priority
-/>
-          <div className="absolute inset-0 bg-black/70 sm:bg-black/60 z-[1]" />
-          <div className="container mx-auto px-4 py-12 sm:py-16 relative z-10">
-            <div className="max-w-4xl text-center sm:text-left">
-              <Badge
-                variant="secondary"
-                className="mb-4 sm:mb-6 bg-emerald-600 text-white border-emerald-500/50 text-sm sm:text-base"
-              >
-                <Wifi className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                Offline-Ready Learning Platform
-              </Badge>
-              <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-balance mb-6 sm:mb-8 text-white leading-tight">
-                Transform Your Future with
-                <span className="text-emerald-400 block mt-1 sm:mt-2">Nigerian Skills</span>
-              </h1>
-              <p 
-              className={`${lora.className} text-lg sm:text-xl lg:text-2xl text-gray-200 text-pretty mb-8 sm:mb-10 max-w-3xl leading-relaxed`}>
-                Master income-generating trades like baking, tailoring, and welding through expert-led lessons. Built
-                for Nigeria, works everywhere - even offline!
-              </p>
-              <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 mb-8 sm:mb-12">
-                <Button
-                  size="lg"
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-4 sm:px-8 text-lg font-semibold w-full sm:w-auto min-h-[56px]"
-                  asChild
-                >
-                  <Link href="/courses">
-                    <Play className="w-5 h-5 mr-2" />
-                    Start Learning Free
-                  </Link>
-                </Button>
-                {/* <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white/50 text-white hover:bg-white/10 px-6 py-4 sm:px-8 text-lg bg-transparent w-full sm:w-auto min-h-[56px]"
-                  asChild
-                >
-                  <Link href="/about">
-                    Watch Demo
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button> */}
+      <div className="min-h-screen bg-[#111828] text-white flex flex-col font-sans selection:bg-[#2aab1a] selection:text-white">
+        {/* Navigation */}
+        <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#111828]/80 backdrop-blur-md">
+          <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#2aab1a] to-[#1e7e13] flex items-center justify-center shadow-lg shadow-[#2aab1a]/20 group-hover:shadow-[#2aab1a]/40 transition-all duration-300">
+                <span className="font-bold text-xl text-white">M</span>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-white/90 text-center sm:text-left">
-                <div className="flex items-center justify-center sm:justify-start gap-2">
-                  <Wifi className="w-5 h-5" />
-                  <span className={`${lora.className}`}>Offline‑ready</span>
+              <span className="text-xl font-bold tracking-tight group-hover:text-[#2aab1a] transition-colors">My Makaranta</span>
+            </Link>
+            <nav className="hidden md:flex items-center gap-8">
+              <Link href="/features" className="text-sm font-medium text-gray-300 hover:text-[#2aab1a] transition-colors">
+                Features
+              </Link>
+              <Link href="/about" className="text-sm font-medium text-gray-300 hover:text-[#2aab1a] transition-colors">
+                About
+              </Link>
+              <Link href="/contact" className="text-sm font-medium text-gray-300 hover:text-[#2aab1a] transition-colors">
+                Contact
+              </Link>
+              <Button className="bg-[#2aab1a] hover:bg-[#228b15] text-white rounded-full px-6">
+                Download App
+              </Button>
+            </nav>
+            {/* Mobile Menu Button Placeholder */}
+            <button className="md:hidden text-gray-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+          </div>
+        </header>
+
+        {/* Hero Section */}
+        <main className="flex-1">
+          <section className="relative pt-20 pb-32 overflow-hidden">
+            {/* Background Gradients */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[#2aab1a]/20 rounded-full blur-[120px] -z-10 opacity-50"></div>
+            <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-blue-600/10 rounded-full blur-[100px] -z-10 opacity-30"></div>
+
+            <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
+              <div className="flex-1 space-y-8 text-center lg:text-left z-10">
+                <div className="inline-flex items-center rounded-full border border-[#2aab1a]/30 bg-[#2aab1a]/10 px-4 py-1.5 text-sm font-medium text-[#2aab1a] backdrop-blur-sm animate-fade-in-up">
+                  <span className="flex h-2 w-2 rounded-full bg-[#2aab1a] mr-2 animate-pulse"></span>
+                  v2.0 Now Available
                 </div>
-                <div className="flex items-center justify-center sm:justify-start gap-2">
-                  <BookOpen className="w-5 h-5" />
-                  <span className={`${lora.className}`}>Practical courses</span>
+                
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]">
+                  Formal Education. <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2aab1a] to-[#4ade80]">
+                    Skills for Life.
+                  </span>
+                </h1>
+                
+                <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                  The ultimate offline-first learning platform. Master core subjects for WAEC & JAMB, while learning practical vocational skills—no internet required.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start pt-4">
+                  <Button 
+                    size="lg" 
+                    className="bg-[#2aab1a] hover:bg-[#228b15] text-white px-8 h-14 text-lg w-full sm:w-auto shadow-lg shadow-[#2aab1a]/25 transition-all hover:scale-105 rounded-xl"
+                  >
+                    <Download className="mr-2 h-5 w-5" />
+                    Get for Android
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="border-white/10 bg-white/5 text-white hover:bg-white/10 h-14 text-lg w-full sm:w-auto rounded-xl backdrop-blur-sm"
+                  >
+                    <Smartphone className="mr-2 h-5 w-5" />
+                    Get for iOS
+                  </Button>
                 </div>
-                <div className="flex items-center justify-center sm:justify-start gap-2">
-                  <Trophy className="w-5 h-5" />
-                  <span className={`${lora.className}`}>Certificates available</span>
+
+                <div className="pt-8 flex flex-wrap items-center justify-center lg:justify-start gap-8 text-sm font-medium text-gray-400">
+                  <div className="flex items-center gap-2">
+                    <div className="p-1 rounded-full bg-[#2aab1a]/20 text-[#2aab1a]"><CheckCircle className="h-3 w-3" /></div>
+                    <span>WAEC & JAMB Prep</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="p-1 rounded-full bg-[#2aab1a]/20 text-[#2aab1a]"><CheckCircle className="h-3 w-3" /></div>
+                    <span>Vocational Skills</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="p-1 rounded-full bg-[#2aab1a]/20 text-[#2aab1a]"><CheckCircle className="h-3 w-3" /></div>
+                    <span>100% Offline Mode</span>
+                  </div>
                 </div>
+              </div>
+
+              {/* 3D-ish App Mockup */}
+              <div className="flex-1 relative w-full max-w-[500px] lg:max-w-none flex justify-center lg:justify-end perspective-1000">
+                <div className="relative z-10 bg-[#0f1623] border-[10px] border-[#1f2937] rounded-[3rem] shadow-2xl overflow-hidden h-[700px] w-[350px] transform rotate-y-[-12deg] rotate-x-[5deg] hover:rotate-0 transition-all duration-700 ease-out shadow-[#2aab1a]/20">
+                  {/* Screen Content */}
+                  <div className="h-full w-full bg-[#111828] flex flex-col relative">
+                    {/* Status Bar */}
+                    <div className="h-8 bg-black/40 w-full absolute top-0 z-20 backdrop-blur-md flex items-center justify-between px-6">
+                        <span className="text-[10px] font-bold text-white">9:41</span>
+                        <div className="flex gap-1">
+                            <div className="w-3 h-3 rounded-full bg-white/20"></div>
+                            <div className="w-3 h-3 rounded-full bg-white/20"></div>
+                        </div>
+                    </div>
+                    
+                    {/* App Header */}
+                    <div className="pt-14 pb-6 px-6 bg-gradient-to-b from-[#111828] to-[#111828]/90 flex items-center justify-between">
+                      <div>
+                        <p className="text-gray-400 text-xs uppercase tracking-wider font-semibold">Welcome back</p>
+                        <h3 className="text-white font-bold text-xl">Auwal</h3>
+                      </div>
+                      <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[#2aab1a] to-[#1e7e13] p-[2px]">
+                        <div className="h-full w-full rounded-full bg-[#111828] flex items-center justify-center">
+                            <span className="text-[#2aab1a] font-bold">A</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* App Body */}
+                    <div className="px-6 space-y-6 overflow-hidden flex-1">
+                      {/* Progress Card */}
+                      <div className="rounded-2xl bg-gradient-to-br from-[#2aab1a] to-[#166534] p-5 text-white shadow-lg shadow-[#2aab1a]/20 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-10 -mt-10 blur-2xl"></div>
+                        <div className="relative z-10">
+                            <div className="flex justify-between items-start mb-4">
+                                <div>
+                                    <p className="text-white/80 text-sm font-medium">Current Course</p>
+                                    <h4 className="text-lg font-bold">Professional Baking</h4>
+                                </div>
+                                <div className="bg-white/20 backdrop-blur-md px-2 py-1 rounded-lg text-xs font-bold">75%</div>
+                            </div>
+                            <div className="w-full bg-black/20 h-2 rounded-full overflow-hidden">
+                                <div className="bg-white h-full w-3/4 rounded-full"></div>
+                            </div>
+                            <p className="text-xs text-white/80 mt-2">3 lessons remaining</p>
+                        </div>
+                      </div>
+                      
+                      {/* Quick Actions */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-[#1f2937] p-4 rounded-2xl hover:bg-[#374151] transition-colors cursor-pointer group">
+                            <div className="h-10 w-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                <Smartphone size={20} />
+                            </div>
+                            <h5 className="font-semibold text-sm">Offline Mode</h5>
+                            <p className="text-xs text-gray-400">Active</p>
+                        </div>
+                        <div className="bg-[#1f2937] p-4 rounded-2xl hover:bg-[#374151] transition-colors cursor-pointer group">
+                            <div className="h-10 w-10 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                <Star size={20} />
+                            </div>
+                            <h5 className="font-semibold text-sm">AI Coach</h5>
+                            <p className="text-xs text-gray-400">Ask now</p>
+                        </div>
+                      </div>
+
+                      {/* Recommended */}
+                      <div>
+                        <h4 className="font-bold text-lg mb-3">Recommended</h4>
+                        <div className="space-y-3">
+                            <div className="bg-[#1f2937] p-3 rounded-xl flex items-center gap-4">
+                                <div className="h-12 w-12 rounded-lg bg-orange-500/20 flex items-center justify-center text-orange-500">
+                                    <Zap size={24} />
+                                </div>
+                                <div>
+                                    <h5 className="font-semibold text-sm">Welding Basics</h5>
+                                    <p className="text-xs text-gray-400">20 Lessons • 4h 30m</p>
+                                </div>
+                            </div>
+                            <div className="bg-[#1f2937] p-3 rounded-xl flex items-center gap-4">
+                                <div className="h-12 w-12 rounded-lg bg-pink-500/20 flex items-center justify-center text-pink-500">
+                                    <Users size={24} />
+                                </div>
+                                <div>
+                                    <h5 className="font-semibold text-sm">Tailoring 101</h5>
+                                    <p className="text-xs text-gray-400">15 Lessons • 3h 15m</p>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Nav */}
+                    <div className="h-20 bg-[#0f1623]/95 backdrop-blur border-t border-white/5 flex items-center justify-around px-6 pb-2">
+                      <div className="flex flex-col items-center gap-1 text-[#2aab1a]">
+                        <div className="h-10 w-10 rounded-xl bg-[#2aab1a]/10 flex items-center justify-center">
+                            <Globe size={20} />
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
+                        <Smartphone size={20} />
+                      </div>
+                      <div className="flex flex-col items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
+                        <Users size={20} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Features Grid */}
+          <section className="py-24 bg-[#0f1623]">
+            <div className="container mx-auto px-6">
+              <div className="text-center max-w-3xl mx-auto mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Everything you need to succeed</h2>
+                <p className="text-gray-400 text-lg">We've packed My Makaranta with powerful features designed specifically for the Nigerian vocational landscape.</p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-8">
+                <div className="bg-[#1f2937]/50 border border-white/5 p-8 rounded-3xl hover:bg-[#1f2937] transition-colors group">
+                  <div className="h-14 w-14 rounded-2xl bg-[#2aab1a]/10 text-[#2aab1a] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <Shield className="h-7 w-7" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">Offline-First Architecture</h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    Download once, learn anywhere. Our proprietary compression technology lets you store hundreds of hours of video content without filling your phone.
+                  </p>
+                </div>
+                <div className="bg-[#1f2937]/50 border border-white/5 p-8 rounded-3xl hover:bg-[#1f2937] transition-colors group">
+                  <div className="h-14 w-14 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <Star className="h-7 w-7" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">AI Business Coach</h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    Not just skills—business. Our integrated AI helps you write business plans, calculate pricing, and find customers in your local area.
+                  </p>
+                </div>
+                <div className="bg-[#1f2937]/50 border border-white/5 p-8 rounded-3xl hover:bg-[#1f2937] transition-colors group">
+                  <div className="h-14 w-14 rounded-2xl bg-purple-500/10 text-purple-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <Globe className="h-7 w-7" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">Multi-Language Support</h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    Learn in the language you're most comfortable with. Full support for English, Hausa, Yoruba, and Igbo (coming soon).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* CTA Section */}
+          <section className="py-24 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[#2aab1a]/10"></div>
+            <div className="container mx-auto px-6 relative z-10 text-center">
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to start your journey?</h2>
+              <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">Join thousands of Nigerian students and artisans building their future with My Makaranta.</p>
+              <Button size="lg" className="bg-[#2aab1a] hover:bg-[#228b15] text-white px-10 h-16 text-xl rounded-full shadow-xl shadow-[#2aab1a]/30">
+                Download Now - It's Free
+              </Button>
+            </div>
+          </section>
+        </main>
+
+        {/* Footer */}
+        <footer className="border-t border-white/10 bg-[#0f1623] pt-16 pb-8">
+          <div className="container mx-auto px-6">
+            <div className="grid md:grid-cols-4 gap-12 mb-12">
+              <div className="col-span-1 md:col-span-2">
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="h-8 w-8 rounded-lg bg-[#2aab1a] flex items-center justify-center">
+                    <span className="font-bold text-lg text-white">M</span>
+                  </div>
+                  <span className="text-xl font-bold">My Makaranta</span>
+                </div>
+                <p className="text-gray-400 max-w-sm">
+                  Empowering the next generation of Nigerians with quality education and practical vocational skills.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-bold mb-6">Product</h4>
+                <ul className="space-y-4 text-gray-400">
+                  <li><Link href="/features" className="hover:text-[#2aab1a] transition-colors">Features</Link></li>
+                  <li><Link href="/courses" className="hover:text-[#2aab1a] transition-colors">Courses</Link></li>
+                  <li><Link href="#" className="hover:text-[#2aab1a] transition-colors">Success Stories</Link></li>
+                  <li><Link href="#" className="hover:text-[#2aab1a] transition-colors">Pricing</Link></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-bold mb-6">Company</h4>
+                <ul className="space-y-4 text-gray-400">
+                  <li><Link href="/about" className="hover:text-[#2aab1a] transition-colors">About Us</Link></li>
+                  <li><Link href="/contact" className="hover:text-[#2aab1a] transition-colors">Contact</Link></li>
+                  <li><Link href="#" className="hover:text-[#2aab1a] transition-colors">Privacy Policy</Link></li>
+                  <li><Link href="#" className="hover:text-[#2aab1a] transition-colors">Terms of Service</Link></li>
+                </ul>
+              </div>
+            </div>
+            <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+              <p>© 2025 My Makaranta. All rights reserved.</p>
+              <div className="flex gap-6">
+                <Link href="#" className="hover:text-white transition-colors">Twitter</Link>
+                <Link href="#" className="hover:text-white transition-colors">LinkedIn</Link>
+                <Link href="#" className="hover:text-white transition-colors">Instagram</Link>
               </div>
             </div>
           </div>
-        </section>
-
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12 sm:mb-16">
-              <Badge variant="outline" className="mb-4 text-emerald-600 border-emerald-200">
-                Why Choose SkillHub Nigeria
-              </Badge>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-balance">
-                Built for <span className="text-emerald-600">Nigerian</span> Success
-              </h2>
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                We understand the unique challenges facing Nigerian learners and entrepreneurs
-              </p>
-            </div>
-
-            <div className="space-y-16 sm:space-y-20">
-              {/* Feature 1 - Mobile: Image first, then content */}
-              <div className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center lg:space-y-0">
-                <div className="relative">
-                  <Image
-                    src="/nigerian-student-learning-on-phone-in-local-bus-se.jpg"
-                    alt="Nigerian student learning on phone"
-                    width={600}
-                    height={400}
-                    className="rounded-2xl shadow-2xl w-full"
-                  />
-                  <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-emerald-500 text-white p-3 sm:p-4 rounded-xl shadow-lg">
-                    <Wifi className="w-6 h-6 sm:w-8 sm:h-8" />
-                  </div>
-                </div>
-                <div className="text-center lg:text-left">
-                  <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Works Completely Offline</h3>
-                  <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
-                    Download entire courses and learn without internet connection. Perfect for areas with unreliable
-                    connectivity or expensive data plans.
-                  </p>
-                  <ul className="space-y-3 text-left max-w-md mx-auto lg:mx-0">
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      <span>Full course downloads</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      <span>Offline video playback</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      <span>Progress tracking without internet</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Feature 2 - Mobile: Image first, then content */}
-              <div className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center lg:space-y-0">
-                <div className="relative lg:order-2">
-                  <Image
-                    src="/nigerian-craftsperson-working-with-hands-showing-p.jpg"
-                    alt="Nigerian craftsperson working"
-                    width={600}
-                    height={400}
-                    className="rounded-2xl shadow-2xl w-full"
-                  />
-                  <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 bg-blue-500 text-white p-3 sm:p-4 rounded-xl shadow-lg">
-                    <BookOpen className="w-6 h-6 sm:w-8 sm:h-8" />
-                  </div>
-                </div>
-                <div className="text-center lg:text-left lg:order-1">
-                  <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Practical, Income-Generating Skills</h3>
-                  <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
-                    Focus on trades that are in high demand across Nigeria. Every skill taught has direct earning
-                    potential in the local economy.
-                  </p>
-                  <ul className="space-y-3 text-left max-w-md mx-auto lg:mx-0">
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      <span>Market-tested skills</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      <span>Local business opportunities</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      <span>Entrepreneurship guidance</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Feature 3 - Mobile: Image first, then content */}
-              <div className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center lg:space-y-0">
-                <div className="relative">
-                  <Image
-                    src="/nigerian-expert-teacher-demonstrating-craft-skills.jpg"
-                    alt="Nigerian expert teacher"
-                    width={600}
-                    height={400}
-                    className="rounded-2xl shadow-2xl w-full"
-                  />
-                  <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-purple-500 text-white p-3 sm:p-4 rounded-xl shadow-lg">
-                    <Users className="w-6 h-6 sm:w-8 sm:h-8" />
-                  </div>
-                </div>
-                <div className="text-center lg:text-left">
-                  <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Learn from Local Experts</h3>
-                  <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
-                    Our instructors are successful Nigerian craftspeople who understand your cultural context and
-                    business environment.
-                  </p>
-                  <ul className="space-y-3 text-left max-w-md mx-auto lg:mx-0">
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      <span>Native language instruction</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      <span>Local market insights</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      <span>Cultural relevance</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Feature 4 - Mobile: Image first, then content */}
-              <div className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center lg:space-y-0">
-                <div className="relative lg:order-2">
-                  <Image
-                    src="/nigerian-graduate-holding-certificate-with-pride-a.jpg"
-                    alt="Nigerian graduate with certificate"
-                    width={600}
-                    height={400}
-                    className="rounded-2xl shadow-2xl w-full"
-                  />
-                  <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 bg-orange-500 text-white p-3 sm:p-4 rounded-xl shadow-lg">
-                    <Award className="w-6 h-6 sm:w-8 sm:h-8" />
-                  </div>
-                </div>
-                <div className="text-center lg:text-left lg:order-1">
-                  <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Earn Trusted Certificates</h3>
-                  <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
-                    Get recognized credentials that employers and customers trust. Build your professional reputation
-                    with verified skills.
-                  </p>
-                  <ul className="space-y-3 text-left max-w-md mx-auto lg:mx-0">
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      <span>Industry-recognized certificates</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      <span>Digital portfolio building</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      <span>Professional networking</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 sm:py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12 sm:mb-16">
-              <Badge variant="outline" className="mb-4 text-emerald-600 border-emerald-200">
-                Popular Courses
-              </Badge>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-balance">
-                Start with High-Demand <span className="text-emerald-600">Skills</span>
-              </h2>
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                These courses have the highest earning potential and job opportunities across Nigeria
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-              <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border-0 shadow-lg">
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src="/beautiful-fresh-baked-bread-and-pastries-on-wooden.jpg"
-                    alt="Fresh baked goods"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <Badge className="bg-emerald-500 text-white">Most Popular</Badge>
-                  </div>
-                  <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2">
-                    <ChefHat className="h-6 w-6 text-emerald-600" />
-                  </div>
-                </div>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-xl font-bold">Professional Baking</CardTitle>
-                  <CardDescription className="text-base">Bread, cakes, pastries & business setup</CardDescription>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    Master commercial baking techniques with local recipes and business strategies. Start earning from
-                    day one!
-                  </p>
-                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      <span>12 Hours</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <BookOpen className="w-4 h-4" />
-                      <span>15 Lessons</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Trophy className="w-4 h-4" />
-                      <span>Certificate</span>
-                    </div>
-                  </div>
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                    <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="font-semibold">4.9</span>
-                      {/* <span className="text-muted-foreground">(2,341)</span> */}
-                    </div>
-                    <Button className="bg-emerald-500 hover:bg-emerald-600 w-full sm:w-auto min-h-[44px]" asChild>
-                      <Link href="/courses/baking">Start Course</Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border-0 shadow-lg">
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src="/colorful-african-fabric-patterns-and-sewing-materi.jpg"
-                    alt="African fabric and sewing materials"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <Badge variant="secondary" className="bg-blue-500/20 text-blue-700 border-blue-200">
-                      Coming Soon
-                    </Badge>
-                  </div>
-                  <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2">
-                    <Scissors className="h-6 w-6 text-blue-600" />
-                  </div>
-                </div>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-xl font-bold">Fashion Design & Tailoring</CardTitle>
-                  <CardDescription className="text-base">Traditional & modern clothing creation</CardDescription>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    Create stunning African and contemporary fashion. Learn pattern making, fitting, and business
-                    management.
-                  </p>
-                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      <span>18 Hours</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <BookOpen className="w-4 h-4" />
-                      <span>22 Lessons</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Trophy className="w-4 h-4" />
-                      <span>Certificate</span>
-                    </div>
-                  </div>
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                    <div className="text-muted-foreground">
-                      <span>Launching March 2024</span>
-                    </div>
-                    <Button variant="outline" disabled className="w-full sm:w-auto min-h-[44px] bg-transparent">
-                      Notify Me
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border-0 shadow-lg">
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src="/welding-sparks-and-metal-fabrication-work-in-niger.jpg"
-                    alt="Welding and metal fabrication"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <Badge variant="secondary" className="bg-orange-500/20 text-orange-700 border-orange-200">
-                      Coming Soon
-                    </Badge>
-                  </div>
-                  <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2">
-                    <Wrench className="h-6 w-6 text-orange-600" />
-                  </div>
-                </div>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-xl font-bold">Professional Welding</CardTitle>
-                  <CardDescription className="text-base">Metal fabrication & construction skills</CardDescription>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    Master essential welding techniques for construction, automotive, and fabrication work. High-paying
-                    skill set.
-                  </p>
-                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      <span>24 Hours</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <BookOpen className="w-4 h-4" />
-                      <span>20 Lessons</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Trophy className="w-4 h-4" />
-                      <span>Certificate</span>
-                    </div>
-                  </div>
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                    <div className="text-muted-foreground">
-                      <span>Launching April 2024</span>
-                    </div>
-                    <Button variant="outline" disabled className="w-full sm:w-auto min-h-[44px] bg-transparent">
-                      Notify Me
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        <section className="relative py-16 sm:py-20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-600" />
-          <div className="absolute inset-0 opacity-20">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `radial-gradient(circle at 25% 25%, white 2px, transparent 2px)`,
-                backgroundSize: "60px 60px",
-              }}
-            />
-          </div>
-          <div className="container mx-auto px-4 text-center relative z-10">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white text-balance leading-tight">
-                Learn practical skills
-                <span className="block text-yellow-300">at your pace.</span>
-              </h2>
-              <p className="text-lg sm:text-xl lg:text-2xl text-white/90 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed">
-                Build real, income‑friendly skills for life in Nigeria. Simple lessons, offline support, and clear next steps.
-              </p>
-              <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-center mb-8 sm:mb-12">
-                <Button
-                  size="lg"
-                  className="bg-white text-emerald-600 hover:bg-gray-100 px-6 py-4 sm:px-8 text-lg font-semibold w-full sm:w-auto min-h-[56px]"
-                  asChild
-                >
-                  <Link href="/courses">
-                    <Play className="w-5 h-5 mr-2" />
-                    Start Learning Now
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white/20 px-6 py-4 sm:px-8 text-lg bg-transparent hover:border-white w-full sm:w-auto min-h-[56px]"
-                  asChild
-                >
-                  <Link href="/about">
-                    <Users className="w-5 h-5 mr-2" />
-                    About SkillHub
-                  </Link>
-                </Button>
-              </div>
-              {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-white">
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-white mb-2">10,000+</div>
-                  <div className="text-white/80">Active Students</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-white mb-2">95%</div>
-                  <div className="text-white/80">Success Rate</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-white mb-2">₦500K+</div>
-                  <div className="text-white/80">Average Monthly Earnings</div>
-                </div>
-              </div> */}
-            </div>
-          </div>
-        </section>
-
-        <SiteFooter />
+        </footer>
       </div>
     </>
   )

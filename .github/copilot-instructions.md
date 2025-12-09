@@ -1,46 +1,54 @@
-# SkillHub Nigeria – AI Guide
+# Copilot Instructions for SkillHub Nigeria
 
-## Project Snapshot
-- Next.js 15 App Router + TypeScript PWA focused on offline-first vocational learning; frontend lives under `app/`.
-- UI primitives live in `components/ui/*` (shadcn) and helpers in `lib/utils.ts` (`cn`), keeping styles in Tailwind classes defined by `app/globals.css`.
-- Static marketing/public pages sit in `app/{about,contact,terms,privacy}`, while authenticated dashboards live under `app/courses`, `app/settings`, etc.
+## Project Overview
+This is a Next.js 15+ (App Router) project for "SkillHub Nigeria", a vocational learning platform. It uses TypeScript, Tailwind CSS v4, and Firebase. The app is designed to be PWA-capable with offline support.
 
-## Local Dev & Env
-- Install deps with `npm install` (pnpm lock is checked in but npm scripts are canonical); run `npm run dev`, `npm run lint`, `npm run build`.
-- Node 20 is expected (Netlify config); set Firebase envs `NEXT_PUBLIC_FIREBASE_*` plus `OPENROUTER_API_KEY`, optional `OPENROUTER_SITE_URL`/`OPENROUTER_SITE_NAME` for the chat API.
-- `.env.local` must mirror `.env.example`; without keys AuthGuard falls back to localStorage-only which is fine for storybook-style mocks.
+## Architecture & Tech Stack
+- **Framework**: Next.js 15 (App Router).
+- **Language**: TypeScript.
+- **Styling**: Tailwind CSS v4 with `tailwindcss-animate`.
+- **UI Library**: Radix UI primitives via Shadcn/UI-like components in `components/ui/`.
+- **Icons**: `lucide-react`.
+- **Backend/Auth**: Firebase (Client SDK). Config in `app/firebase/config.js`.
+- **AI**: Vercel AI SDK (`ai`, `@ai-sdk/react`) for chat features.
+- **PWA**: Service worker (`public/sw.js`, `app/register-sw.js`) and manifest (`public/manifest.json`).
 
-## Routing & Layout
-- `app/layout.tsx` wraps every page with `AuthRedirectHandler`, `HeaderSwitcher`, and `ChatWidget`; keep new global providers here.
-- `HeaderSwitcher` only renders `SiteHeader` on public routes, so private pages must explicitly render `InnerPageHeader` inside their own layout.
-- Authenticated screens should use `<AuthGuard><InnerPageHeader />…</AuthGuard>` (see `app/courses/page.tsx`, `app/settings/page.tsx`).
+## Conventions
 
-## Authentication & Offline Mirror
-- `AuthGuard` uses Firebase Auth when online and mirrors the minimal user to `localStorage` (`skillhub_user`) for offline fallback; update both when mutating auth state.
-- OAuth redirects are resolved by `components/auth-redirect-handler.tsx`; if you add providers, ensure their redirect flow still stores the same user shape.
-- Email verification is enforced: unverified users are pushed to `/auth/verify-email`; keep that in sync when adding gated areas.
+### Component Structure
+- **UI Components**: Reusable, atomic components live in `components/ui/`. Prefer using these over raw HTML/Tailwind.
+- **Feature Components**: Business logic components live in `components/` (e.g., `auth-guard.tsx`, `chat-widget.tsx`).
+- **Pages**: Route pages live in `app/` (e.g., `app/courses/page.tsx`).
 
-## Course Content & Progress
-- Course lists and lessons are hard-coded arrays/objects inside their route files (`app/courses/baking/**`); extend them in place or extract to shared data modules.
-- Lesson pages render HTML strings through `dangerouslySetInnerHTML` plus scoped `<style jsx>` for `.tip-box`; keep HTML sanitized and update CSS there.
-- Offline access relies on `skillhub_downloaded_lessons` and `navigator.onLine`; reuse `canAccessLesson`/`downloadLesson` patterns when introducing new lessons.
-- Quiz progress persists in `localStorage` (`skillhub_baking_quiz_result`); follow the same schema if you add quizzes to other courses.
+### Styling
+- Use Tailwind CSS utility classes.
+- Use the `cn()` utility from `lib/utils.ts` for conditional class merging.
+  ```tsx
+  import { cn } from "@/lib/utils"
+  // ...
+  className={cn("base-class", condition && "conditional-class")}
+  ```
+- Fonts: `GeistSans` and `GeistMono` are configured in `app/layout.tsx`.
 
-## UI & Styling
-- Tailwind v4 via `@import "tailwindcss"` and CSS custom properties in `app/globals.css`; extend palettes by editing the CSS variables, not the components.
-- Use shadcn components (`components/ui/*`) and the `cn` helper for conditional classes instead of ad-hoc HTML.
-- `InnerPageHeader` + `UserMenu` handles desktop nav; mobile drawers live in `components/inner-page-mobile-nav.tsx`/`mobile-nav.tsx` if you need responsive tweaks.
+### Data Fetching & State
+- **Firebase**: Use Firebase SDK for auth and data.
+- **Client Components**: Mark components as `"use client"` when using hooks or interactivity.
+- **Server Components**: Default to Server Components for data fetching where possible (though Firebase client SDK is heavily used here).
 
-## AI Chat & API
-- `components/chat-widget.tsx` posts to `/api/chat` which calls OpenRouter’s `deepseek/deepseek-chat-v3.1:free`; the system prompt enforces ≤180-word Nigerian-context replies—read `app/api/chat/route.ts` before changing tone or format.
-- Handle network failures gracefully: the widget already watches `navigator.onLine` and shows cached messages; keep new features tolerant of offline state.
+### Routing & Navigation
+- Use `next/link` for internal navigation.
+- `app/layout.tsx` handles global providers and layout (Header, Footer, AuthRedirect).
 
-## PWA & Offline
-- `app/register-sw.js` registers `public/sw.js` only in production to avoid dev-mode conflicts; import it at the page level if you add new standalone shells.
-- `public/sw.js` caches a short allowlist (`urlsToCache`) and uses network-first for same-origin GETs; update the allowlist when adding critical offline routes and keep `offline.html` friendly.
-- Manifest lives in `public/manifest.json`; add icons or categories there when changing branding.
+### AI & Chat
+- Chat functionality is implemented using Vercel AI SDK.
+- API route: `app/api/chat/route.ts`.
+- UI Component: `components/chat-widget.tsx`.
 
-## Build & Deploy
-- Netlify builds run `npm run build` with `@netlify/plugin-nextjs`; ensure SSR-safe APIs stay under `/app/api`.
-- `next.config.mjs` ignores TypeScript/Lint errors during build, so run `npm run lint` locally before opening PRs.
-- Images are `unoptimized: true`, so provide appropriately sized assets under `public/images/` to avoid huge payloads.
+## Critical Workflows
+- **Development**: `npm run dev`
+- **Build**: `npm run build`
+- **Lint**: `npm run lint`
+
+## Specific Patterns
+- **Auth Guard**: Protected routes are managed via `components/auth-guard.tsx` or `components/auth-redirect-handler.tsx`.
+- **Offline Support**: The app registers a service worker for offline capabilities. Be mindful of caching strategies in `public/sw.js`.

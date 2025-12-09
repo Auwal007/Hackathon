@@ -4,8 +4,24 @@ import Link from "next/link"
 import Image from "next/image"
 import { MobileNav } from "@/components/mobile-nav"
 import { Button } from "@/components/ui/button"
+import { Wifi, WifiOff } from "lucide-react"
+import { useState, useEffect } from "react"
 
 export function SiteHeader() {
+  const [isSimulatedOffline, setIsSimulatedOffline] = useState(false)
+
+  const toggleOfflineMode = () => {
+    const newState = !isSimulatedOffline
+    setIsSimulatedOffline(newState)
+    
+    // Dispatch events to simulate online/offline behavior
+    if (newState) {
+      window.dispatchEvent(new Event("offline"))
+    } else {
+      window.dispatchEvent(new Event("online"))
+    }
+  }
+
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b">
       <div className="container mx-auto px-4">
@@ -37,8 +53,19 @@ export function SiteHeader() {
             </Link>
           </nav>
 
-          {/* Desktop Auth Buttons */}
+          {/* Desktop Auth Buttons & Offline Toggle */}
           <div className="hidden md:flex items-center gap-4">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={toggleOfflineMode}
+              className={isSimulatedOffline ? "bg-red-50 text-red-600 border-red-200" : "text-emerald-600 border-emerald-200"}
+              title="Simulate Offline Mode for Demo"
+            >
+              {isSimulatedOffline ? <WifiOff className="h-4 w-4 mr-2" /> : <Wifi className="h-4 w-4 mr-2" />}
+              {isSimulatedOffline ? "Offline Mode" : "Online"}
+            </Button>
+
             <Link href="/auth/login" className="font-medium hover:text-emerald-600 transition-colors">
               Login
             </Link>

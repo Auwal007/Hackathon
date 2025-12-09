@@ -42,9 +42,9 @@ export default function RootLayout({
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={null}>
           <AuthRedirectHandler />
-          <HeaderSwitcher />
+          {/* <HeaderSwitcher /> */}
           {children}
-          <ChatWidget />
+          {/* <ChatWidget /> */}
         </Suspense>
       </body>
     </html>

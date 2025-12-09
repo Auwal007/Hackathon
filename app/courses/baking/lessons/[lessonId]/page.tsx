@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { AuthGuard } from "@/components/auth-guard"
 import { InnerPageHeader } from "@/components/inner-page-header"
-import { ArrowLeft, ArrowRight, CheckCircle, Clock, WifiOff, Lightbulb } from "lucide-react"
+import { ArrowLeft, ArrowRight, CheckCircle, Clock, WifiOff, Lightbulb, Volume2, DollarSign } from "lucide-react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
 
@@ -16,6 +16,7 @@ function LessonContent() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [isOnline, setIsOnline] = useState(true)
   const [lessonCompleted, setLessonCompleted] = useState(false)
+  const [isSpeaking, setIsSpeaking] = useState(false)
 
   useEffect(() => {
     setIsOnline(navigator.onLine)
@@ -403,7 +404,7 @@ function LessonContent() {
         <h3>Important: 1 Cup is Not Always 8 Ounces</h3>
         <p>This is one of the most confusing concepts in baking! While 1 cup measures 8 fluid ounces by volume, that doesn't mean 1 cup of everything weighs 8 ounces.</p>
 
-        <p><strong>Think about it:</strong> A measuring cup filled with lead versus a measuring cup filled with feathers. They take up the same volume (space) but definitely don't weigh the same!</p>
+        <p><strong
 
         <p><strong>Exception:</strong> Water, milk, cream, and melted butter do have the same volume and weight measurements (1 cup = 8 fl oz = 8 oz by weight).</p>
 
@@ -1783,6 +1784,34 @@ function LessonContent() {
     console.log(`Lesson ${lessonId} marked as complete`)
   }
 
+  const handleReadAloud = (text: string) => {
+    if (isSpeaking) {
+      window.speechSynthesis.cancel()
+      setIsSpeaking(false)
+      return
+    }
+
+    // Strip HTML tags for reading
+    const cleanText = text.replace(/<[^>]*>/g, ' ')
+    const utterance = new SpeechSynthesisUtterance(cleanText)
+    
+    utterance.onend = () => setIsSpeaking(false)
+    utterance.onerror = () => setIsSpeaking(false)
+    
+    window.speechSynthesis.speak(utterance)
+    setIsSpeaking(true)
+  }
+
+  const handleMonetize = () => {
+    // Dispatch event for the chat widget to pick up
+    const event = new CustomEvent('trigger-chat', { 
+      detail: { 
+        message: `I've just learned about "${currentLesson?.title}". How can I turn this specific baking skill into a business in Nigeria? Give me a micro-business plan.` 
+      } 
+    })
+    window.dispatchEvent(event)
+  }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -1843,11 +1872,31 @@ function LessonContent() {
                     title={currentLesson.title}
                   />
                 ) : (
-                  <div className="flex items-center justify-center h-full text-white">
-                    <div className="text-center">
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-slate-900 text-white">
+                    {/* Offline Video Fallback - Demo Mode */}
+                    <div className="text-center p-6">
                       <WifiOff className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                      <p>Video requires internet connection</p>
-                      <p className="text-sm opacity-75">Read the lesson content below</p>
+                      <h3 className="text-lg font-semibold mb-2">You are Offline</h3>
+                      <p className="text-sm opacity-75 mb-6">
+                        YouTube videos are unavailable.
+                      </p>
+                      
+                      {/* Hackathon Demo: Local Video Fallback */}
+                      <div className="bg-slate-800 p-4 rounded-lg border border-slate-700 max-w-sm mx-auto">
+                        <p className="text-xs text-emerald-400 font-mono mb-2">OFFLINE DEMO MODE ACTIVE</p>
+                        <p className="text-sm mb-4">
+                          In a real deployment, this lesson's video would be cached.
+                          <br/>For this demo, play the local sample:
+                        </p>
+                        <video 
+                          controls 
+                          className="w-full rounded bg-black"
+                          poster="/skill-hub-logo.png"
+                        >
+                          <source src="/videos/demo-lesson.mp4" type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -1858,10 +1907,21 @@ function LessonContent() {
           {/* Lesson Content */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Lightbulb className="h-5 w-5" />
-                Lesson Notes
-              </CardTitle>
+              <div className="flex items-center justify-between">
+                <CardTitle className="flex items-center gap-2">
+                  <Lightbulb className="h-5 w-5" />
+                  Lesson Notes
+                </CardTitle>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={() => handleReadAloud(currentLesson.content)}
+                  className={isSpeaking ? "text-emerald-600 bg-emerald-50" : ""}
+                >
+                  <Volume2 className="h-4 w-4 mr-2" />
+                  {isSpeaking ? "Stop Reading" : "Read Aloud"}
+                </Button>
+              </div>
               <CardDescription>Read through these notes as you watch the video</CardDescription>
             </CardHeader>
             <CardContent className="prose prose-sm max-w-none">
@@ -1870,7 +1930,7 @@ function LessonContent() {
           </Card>
 
           {/* Navigation */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-wrap gap-4">
             <Button variant="outline" asChild>
               <Link href="/courses/baking">
                 <ArrowLeft className="h-4 w-4 mr-2" />
@@ -1878,7 +1938,15 @@ function LessonContent() {
               </Link>
             </Button>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 flex-wrap">
+              <Button 
+                onClick={handleMonetize}
+                className="bg-amber-600 hover:bg-amber-700 text-white border-amber-700"
+              >
+                <DollarSign className="h-4 w-4 mr-2" />
+                Monetize This Skill
+              </Button>
+
               {!lessonCompleted && (
                 <Button onClick={markAsComplete}>
                   <CheckCircle className="h-4 w-4 mr-2" />

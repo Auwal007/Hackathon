@@ -6,6 +6,7 @@ const urlsToCache = [
   "/offline.html",
   "/skill-hub-logo-removebg-preview.png",
   "/skill-hub-logo.png",
+  "/videos/demo-lesson.mp4" // Cache the demo video
 ]
 
 // Helper: determine if a request should bypass the SW (Next.js dev assets)

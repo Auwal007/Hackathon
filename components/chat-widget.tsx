@@ -4,18 +4,21 @@ import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { X, Send, Loader2 } from "lucide-react"
+import { X, Send, Loader2, Camera, Image as ImageIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 type Message = {
   id: string
   role: "user" | "assistant"
-  content: string
+  content: string | Array<{ type: string; text?: string; image_url?: { url: string } }>
 }
 
 // Simple markdown-like formatter for chat messages
-const formatMessage = (text: string): string => {
-  return text
+const formatMessage = (content: string | Array<any>): string => {
+  if (Array.isArray(content)) {
+    return content.map(c => c.text || "").join(" ")
+  }
+  return content
     // Bold text **text** -> <strong>text</strong>
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     // Bullet points * item -> • item
@@ -39,23 +42,53 @@ export function ChatWidget() {
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const endRef = useRef<HTMLDivElement | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!input.trim() || isLoading) return
+  // Listen for external triggers (e.g., "Monetize This Skill" button)
+  useEffect(() => {
+    const handleTrigger = (e: CustomEvent) => {
+      if (e.detail?.action === "open-chat") {
+        setIsOpen(true)
+        if (e.detail?.message) {
+          handleExternalMessage(e.detail.message)
+        }
+      }
+    }
+    window.addEventListener("trigger-chat" as any, handleTrigger as any)
+    return () => window.removeEventListener("trigger-chat" as any, handleTrigger as any)
+  }, [])
 
+  const handleExternalMessage = async (text: string) => {
     const userMessage: Message = {
       id: crypto.randomUUID(),
       role: "user",
-      content: input.trim(),
+      content: text,
     }
-
     setMessages(prev => [...prev, userMessage])
-    setInput("")
     setIsLoading(true)
     setError(null)
+    
+    try {
+      await processChatRequest([...messages, userMessage])
+    } catch (err) {
+      // Error handling
+    }
+  }
 
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setSelectedImage(reader.result as string)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const processChatRequest = async (msgs: Message[]) => {
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -63,7 +96,7 @@ export function ChatWidget() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          messages: [...messages, userMessage].map(m => ({
+          messages: msgs.map(m => ({
             role: m.role,
             content: m.content,
           })),
@@ -95,6 +128,34 @@ export function ChatWidget() {
     } finally {
       setIsLoading(false)
     }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if ((!input.trim() && !selectedImage) || isLoading) return
+
+    let content: any = input.trim()
+    
+    if (selectedImage) {
+      content = [
+        { type: "text", text: input.trim() || "Analyze this image." },
+        { type: "image_url", image_url: { url: selectedImage } }
+      ]
+    }
+
+    const userMessage: Message = {
+      id: crypto.randomUUID(),
+      role: "user",
+      content: content,
+    }
+
+    setMessages(prev => [...prev, userMessage])
+    setInput("")
+    setSelectedImage(null)
+    setIsLoading(true)
+    setError(null)
+
+    await processChatRequest([...messages, userMessage])
   }
 
   // Auto-scroll to the latest message
@@ -198,6 +259,15 @@ export function ChatWidget() {
                     message.role === "user" ? "bg-emerald-600 text-white" : "bg-gray-100 text-gray-900",
                   )}
                 >
+                  {Array.isArray(message.content) && message.content.some(c => c.type === 'image_url') && (
+                    <div className="mb-2">
+                      <img 
+                        src={message.content.find(c => c.type === 'image_url')?.image_url?.url} 
+                        alt="Uploaded" 
+                        className="max-w-full rounded-md max-h-40 object-cover"
+                      />
+                    </div>
+                  )}
                   <div 
                     className={cn(
                       "leading-relaxed",
@@ -221,20 +291,52 @@ export function ChatWidget() {
             <div ref={endRef} />
           </div>
 
+          {/* Image Preview */}
+          {selectedImage && (
+            <div className="px-4 py-2 border-t bg-gray-50 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="h-10 w-10 relative rounded overflow-hidden border">
+                  <img src={selectedImage} alt="Preview" className="object-cover w-full h-full" />
+                </div>
+                <span className="text-xs text-gray-500">Image selected</span>
+              </div>
+              <Button variant="ghost" size="sm" onClick={() => setSelectedImage(null)} className="h-6 w-6 p-0">
+                <X className="h-3 w-3" />
+              </Button>
+            </div>
+          )}
+
           {/* Input */}
           <form onSubmit={handleSubmit} className="p-4 border-t">
             <div className="flex gap-2">
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                ref={fileInputRef}
+                onChange={handleImageSelect}
+              />
+              <Button
+                type="button"
+                variant="outline"
+                size="icon"
+                className="shrink-0"
+                onClick={() => fileInputRef.current?.click()}
+                title="Upload photo for analysis"
+              >
+                <Camera className="h-4 w-4 text-gray-500" />
+              </Button>
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask me anything about skills..."
+                placeholder="Ask or upload work..."
                 className="flex-1 border-emerald-200 focus:border-emerald-500"
                 disabled={isLoading}
               />
               <Button
                 type="submit"
                 size="icon"
-                disabled={isLoading || !input.trim()}
+                disabled={isLoading || (!input.trim() && !selectedImage)}
                 className="bg-emerald-600 hover:bg-emerald-700"
               >
                 <Send className="h-4 w-4" />

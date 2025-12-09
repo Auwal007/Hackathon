@@ -4,50 +4,53 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.35 0 0);
-  --card: oklch(0.97 0 0);
-  --card-foreground: oklch(0.35 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.35 0 0);
-  --primary: oklch(0.45 0.15 160);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.55 0.12 160);
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.55 0.12 160);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0 0);
-  --input: oklch(1 0 0);
-  --ring: oklch(0.45 0.15 160 / 0.5);
-  --chart-1: oklch(0.45 0.15 160);
-  --chart-2: oklch(0.55 0.12 160);
-  --chart-3: oklch(0.35 0 0);
-  --chart-4: oklch(0.97 0 0);
-  --chart-5: oklch(0.577 0.245 27.325);
+  /* App Theme: Dark Blue Background #111828, Green Primary #2aab1a */
+  --background: 222 40% 11%; /* #111828 converted to HSL approx or just use hex if supported, but let's stick to the file's format if possible. The file uses oklch. */
+  /* Let's just use the hex values directly as it's easier and valid in modern CSS/Tailwind v4 */
+  --background: #111828;
+  --foreground: #ffffff;
+  --card: #1f2937;
+  --card-foreground: #ffffff;
+  --popover: #111828;
+  --popover-foreground: #ffffff;
+  --primary: #2aab1a;
+  --primary-foreground: #ffffff;
+  --secondary: #1f2937;
+  --secondary-foreground: #ffffff;
+  --muted: #374151;
+  --muted-foreground: #9ca3af;
+  --accent: #2aab1a;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #374151;
+  --input: #374151;
+  --ring: #2aab1a;
+  --chart-1: #2aab1a;
+  --chart-2: #22c55e;
+  --chart-3: #16a34a;
+  --chart-4: #15803d;
+  --chart-5: #166534;
   --radius: 0.5rem;
-  --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.35 0 0);
-  --sidebar-primary: oklch(0.45 0.15 160);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.55 0.12 160);
-  --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-border: oklch(0.9 0 0);
-  --sidebar-ring: oklch(0.45 0.15 160 / 0.5);
+  --sidebar: #111828;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #2aab1a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1f2937;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #374151;
+  --sidebar-ring: #2aab1a;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.55 0.12 160);
-  --primary-foreground: oklch(0.145 0 0);
+  --background: #111828;
+  --foreground: #ffffff;
+  --card: #1f2937;
+  --card-foreground: #ffffff;
+  --popover: #111828;
+  --popover-foreground: #ffffff;
+  --primary: #2aab1a;
+  --primary-foreground: #ffffff;
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
