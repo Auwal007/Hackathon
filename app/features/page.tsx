@@ -36,6 +36,10 @@ export default function FeaturesPage() {
         <section className="py-20 relative overflow-hidden">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#2aab1a]/10 rounded-full blur-[100px] -z-10"></div>
           <div className="container mx-auto px-6 text-center">
+            <div className="inline-flex items-center rounded-full border border-[#2aab1a]/30 bg-[#2aab1a]/10 px-4 py-1.5 text-sm font-medium text-[#2aab1a] backdrop-blur-sm mb-8">
+              <span className="flex h-2 w-2 rounded-full bg-[#2aab1a] mr-2 animate-pulse"></span>
+              iOS App Coming Soon
+            </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">Built for <span className="text-[#2aab1a]">Success</span></h1>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               We didn't just build an app. We built a complete educational ecosystem designed to help you pass your exams and build a career.
@@ -145,7 +149,7 @@ export default function FeaturesPage() {
                             <Smartphone size={24} />
                         </div>
                         <div className="flex-1">
-                            <h4 className="font-bold text-sm">Baking Lesson 1.mp4</h4>
+                            <h4 className="font-bold text-sm">Calculus_Intro.mp4</h4>
                             <p className="text-xs text-green-500">Playing from device storage</p>
                         </div>
                     </div>
@@ -251,7 +255,7 @@ export default function FeaturesPage() {
                     <div className="absolute inset-0 bg-orange-500/20 blur-[80px] rounded-full"></div>
                     <div className="relative bg-[#111828] border border-gray-700 p-8 rounded-2xl shadow-2xl text-center max-w-sm">
                         <h3 className="text-2xl font-bold mb-2">Sannu! 👋</h3>
-                        <p className="text-gray-400">Koyi yadda ake yin burodi da kek a yau.</p>
+                        <p className="text-gray-400">Koyi Lissafi da Turanci a sauƙaƙe.</p>
                         <Button className="mt-6 w-full bg-[#2aab1a] hover:bg-[#228b15]">
                             Fara Koyo (Start Learning)
                         </Button>
@@ -265,9 +269,9 @@ export default function FeaturesPage() {
         {/* CTA */}
         <section className="py-24 text-center">
             <div className="container mx-auto px-6">
-                <h2 className="text-3xl md:text-5xl font-bold mb-8">Experience it yourself</h2>
+                <h2 className="text-3xl md:text-5xl font-bold mb-8">Ready to start your journey?</h2>
                 <Button size="lg" className="bg-[#2aab1a] hover:bg-[#228b15] text-white px-10 h-16 text-xl rounded-full shadow-xl shadow-[#2aab1a]/30">
-                    Download App
+                    Download Now - It's Free
                 </Button>
             </div>
         </section>

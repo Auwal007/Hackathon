@@ -50,7 +50,7 @@ export default function HomePage() {
               <div className="flex-1 space-y-8 text-center lg:text-left z-10">
                 <div className="inline-flex items-center rounded-full border border-[#2aab1a]/30 bg-[#2aab1a]/10 px-4 py-1.5 text-sm font-medium text-[#2aab1a] backdrop-blur-sm animate-fade-in-up">
                   <span className="flex h-2 w-2 rounded-full bg-[#2aab1a] mr-2 animate-pulse"></span>
-                  v2.0 Now Available
+                  iOS App Coming Soon
                 </div>
                 
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]">
@@ -231,9 +231,9 @@ export default function HomePage() {
                   <div className="h-14 w-14 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <Star className="h-7 w-7" />
                   </div>
-                  <h3 className="text-xl font-bold mb-3">AI Business Coach</h3>
+                  <h3 className="text-xl font-bold mb-3">Exam Prep Center</h3>
                   <p className="text-gray-400 leading-relaxed">
-                    Not just skills—business. Our integrated AI helps you write business plans, calculate pricing, and find customers in your local area.
+                    Ace your exams with confidence. Access comprehensive study materials, past questions, and AI-driven practice tests for WAEC, NECO, and JAMB.
                   </p>
                 </div>
                 <div className="bg-[#1f2937]/50 border border-white/5 p-8 rounded-3xl hover:bg-[#1f2937] transition-colors group">
