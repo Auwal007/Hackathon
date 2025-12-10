@@ -54,14 +54,14 @@ export default function HomePage() {
                 </div>
                 
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]">
-                  Formal Education. <br />
+                  Unlocking Equal Learning <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2aab1a] to-[#4ade80]">
-                    Skills for Life.
+                    For Every Student.
                   </span>
                 </h1>
                 
                 <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  The ultimate offline-first learning platform. Master core subjects for WAEC & JAMB, while learning practical vocational skills—no internet required.
+                  Make quality education accessible to every child in Nigeria in the language they truly understand.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start pt-4">
@@ -85,15 +85,15 @@ export default function HomePage() {
                 <div className="pt-8 flex flex-wrap items-center justify-center lg:justify-start gap-8 text-sm font-medium text-gray-400">
                   <div className="flex items-center gap-2">
                     <div className="p-1 rounded-full bg-[#2aab1a]/20 text-[#2aab1a]"><CheckCircle className="h-3 w-3" /></div>
-                    <span>WAEC & JAMB Prep</span>
+                    <span>Offline Learning Mode</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="p-1 rounded-full bg-[#2aab1a]/20 text-[#2aab1a]"><CheckCircle className="h-3 w-3" /></div>
-                    <span>Vocational Skills</span>
+                    <span>Local Language Learning</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="p-1 rounded-full bg-[#2aab1a]/20 text-[#2aab1a]"><CheckCircle className="h-3 w-3" /></div>
-                    <span>100% Offline Mode</span>
+                    <span>Exam-Focused Content</span>
                   </div>
                 </div>
               </div>
@@ -133,15 +133,15 @@ export default function HomePage() {
                         <div className="relative z-10">
                             <div className="flex justify-between items-start mb-4">
                                 <div>
-                                    <p className="text-white/80 text-sm font-medium">Current Course</p>
-                                    <h4 className="text-lg font-bold">Professional Baking</h4>
+                                    <p className="text-white/80 text-sm font-medium">Exam Prep</p>
+                                    <h4 className="text-lg font-bold">WAEC Mathematics</h4>
                                 </div>
-                                <div className="bg-white/20 backdrop-blur-md px-2 py-1 rounded-lg text-xs font-bold">75%</div>
+                                <div className="bg-white/20 backdrop-blur-md px-2 py-1 rounded-lg text-xs font-bold">82%</div>
                             </div>
                             <div className="w-full bg-black/20 h-2 rounded-full overflow-hidden">
                                 <div className="bg-white h-full w-3/4 rounded-full"></div>
                             </div>
-                            <p className="text-xs text-white/80 mt-2">3 lessons remaining</p>
+                            <p className="text-xs text-white/80 mt-2">Algebra & Trigonometry</p>
                         </div>
                       </div>
                       
@@ -151,29 +151,29 @@ export default function HomePage() {
                             <div className="h-10 w-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                                 <Smartphone size={20} />
                             </div>
-                            <h5 className="font-semibold text-sm">Offline Mode</h5>
-                            <p className="text-xs text-gray-400">Active</p>
+                            <h5 className="font-semibold text-sm">CBT Practice</h5>
+                            <p className="text-xs text-gray-400">Start Test</p>
                         </div>
                         <div className="bg-[#1f2937] p-4 rounded-2xl hover:bg-[#374151] transition-colors cursor-pointer group">
                             <div className="h-10 w-10 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                                 <Star size={20} />
                             </div>
-                            <h5 className="font-semibold text-sm">AI Coach</h5>
-                            <p className="text-xs text-gray-400">Ask now</p>
+                            <h5 className="font-semibold text-sm">AI Tutor</h5>
+                            <p className="text-xs text-gray-400">Ask Question</p>
                         </div>
                       </div>
 
                       {/* Recommended */}
                       <div>
-                        <h4 className="font-bold text-lg mb-3">Recommended</h4>
+                        <h4 className="font-bold text-lg mb-3">Your Subjects</h4>
                         <div className="space-y-3">
                             <div className="bg-[#1f2937] p-3 rounded-xl flex items-center gap-4">
                                 <div className="h-12 w-12 rounded-lg bg-orange-500/20 flex items-center justify-center text-orange-500">
                                     <Zap size={24} />
                                 </div>
                                 <div>
-                                    <h5 className="font-semibold text-sm">Welding Basics</h5>
-                                    <p className="text-xs text-gray-400">20 Lessons • 4h 30m</p>
+                                    <h5 className="font-semibold text-sm">English Language</h5>
+                                    <p className="text-xs text-gray-400">Essay Writing • 45 mins</p>
                                 </div>
                             </div>
                             <div className="bg-[#1f2937] p-3 rounded-xl flex items-center gap-4">
@@ -181,8 +181,8 @@ export default function HomePage() {
                                     <Users size={24} />
                                 </div>
                                 <div>
-                                    <h5 className="font-semibold text-sm">Tailoring 101</h5>
-                                    <p className="text-xs text-gray-400">15 Lessons • 3h 15m</p>
+                                    <h5 className="font-semibold text-sm">Physics</h5>
+                                    <p className="text-xs text-gray-400">Motion & Force • 1h 15m</p>
                                 </div>
                             </div>
                         </div>

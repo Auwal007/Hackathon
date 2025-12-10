@@ -26,29 +26,27 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-18">
-          <Link href="/" className="flex items-center gap-2 font-bold text-lg md:text-xl text-emerald-600">
+          <Link href="/" className="flex items-center gap-2 font-bold text-lg md:text-xl text-[#2aab1a]">
             <div className="h-10 w-10 md:h-14 md:w-14 flex-shrink-0 flex items-center justify-center">
-              <img
-                src="/skill-hub-logo-removebg-preview.png"
-                alt="SkillHub Nigeria Logo"
-                className="h-10 w-10 md:h-14 md:w-14 object-contain"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
+              <div className="h-10 w-10 rounded-xl bg-[#2aab1a] flex items-center justify-center shadow-lg shadow-[#2aab1a]/20">
+                <span className="font-bold text-xl text-white">M</span>
+              </div>
             </div>
-            <span className="whitespace-nowrap text-base md:text-xl">SkillHub Nigeria</span>
+            <span className="whitespace-nowrap text-base md:text-xl">My Makaranta</span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8 mx-auto">
-            <Link href="/courses" className="font-medium hover:text-emerald-600 transition-colors">
+            <Link href="/features" className="font-medium hover:text-[#2aab1a] transition-colors">
+              Features
+            </Link>
+            <Link href="/courses" className="font-medium hover:text-[#2aab1a] transition-colors">
               Courses
             </Link>
-            <Link href="/about" className="font-medium hover:text-emerald-600 transition-colors">
-              How It Works
+            <Link href="/about" className="font-medium hover:text-[#2aab1a] transition-colors">
+              About
             </Link>
-            <Link href="/contact" className="font-medium hover:text-emerald-600 transition-colors">
+            <Link href="/contact" className="font-medium hover:text-[#2aab1a] transition-colors">
               Contact
             </Link>
           </nav>

@@ -1,11 +1,11 @@
 {
-  "name": "SkillHub Nigeria - Learn Vocational Skills",
-  "short_name": "SkillHub",
-  "description": "Master practical skills like baking, tailoring, and welding with offline-ready lessons designed for Nigerian learners.",
+  "name": "My Makaranta - Quality Education for Every Nigerian Child",
+  "short_name": "My Makaranta",
+  "description": "Empowering the next generation of Nigerians with quality education (WAEC, NECO, JAMB) and practical vocational skills through offline-ready learning technology.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#059669",
+  "background_color": "#0f1623",
+  "theme_color": "#2aab1a",
   "orientation": "portrait-primary",
   "icons": [
     {

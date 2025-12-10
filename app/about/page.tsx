@@ -73,6 +73,35 @@ export default function AboutPage() {
             </div>
         </section>
 
+        {/* SDGs */}
+        <section className="py-20">
+            <div className="container mx-auto px-6">
+                <h2 className="text-3xl font-bold mb-12 text-center">Contribution to SDGs</h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="bg-[#1f2937] p-6 rounded-2xl border border-white/5 hover:border-[#2aab1a]/50 transition-colors">
+                        <div className="text-4xl font-bold text-[#e5243b] mb-4">SDG 4</div>
+                        <h3 className="text-xl font-bold mb-2">Quality Education</h3>
+                        <p className="text-gray-400 text-sm">Inclusive, curriculum-aligned, mother-tongue learning for all.</p>
+                    </div>
+                    <div className="bg-[#1f2937] p-6 rounded-2xl border border-white/5 hover:border-[#2aab1a]/50 transition-colors">
+                        <div className="text-4xl font-bold text-[#dd1367] mb-4">SDG 10</div>
+                        <h3 className="text-xl font-bold mb-2">Reduced Inequalities</h3>
+                        <p className="text-gray-400 text-sm">Bridging urban-rural & language gaps in education access.</p>
+                    </div>
+                    <div className="bg-[#1f2937] p-6 rounded-2xl border border-white/5 hover:border-[#2aab1a]/50 transition-colors">
+                        <div className="text-4xl font-bold text-[#a21942] mb-4">SDG 8</div>
+                        <h3 className="text-xl font-bold mb-2">Decent Work</h3>
+                        <p className="text-gray-400 text-sm">Better exam success leads to brighter economic futures.</p>
+                    </div>
+                    <div className="bg-[#1f2937] p-6 rounded-2xl border border-white/5 hover:border-[#2aab1a]/50 transition-colors">
+                        <div className="text-4xl font-bold text-[#fd6925] mb-4">SDG 9</div>
+                        <h3 className="text-xl font-bold mb-2">Innovation</h3>
+                        <p className="text-gray-400 text-sm">Offline, AI-enabled edtech infrastructure for low-resource areas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         {/* The Team */}
         <section className="py-24">
             <div className="container mx-auto px-6 text-center">

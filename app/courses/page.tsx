@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { AuthGuard, useAuth } from "@/components/auth-guard"
 import { InnerPageHeader } from "@/components/inner-page-header"
-import { ChefHat, Scissors, Wrench, Clock, Users, Star } from "lucide-react"
+import { Calculator, BookOpen, FlaskConical, ChefHat, Scissors, Wrench, Clock, Users, Star } from "lucide-react"
 import Link from "next/link"
 
 function CoursesContent() {
@@ -14,37 +14,49 @@ function CoursesContent() {
 
   const courses = [
     {
-      id: "baking",
-      title: "Baking Basics",
-      description: "Master the fundamentals of bread, cakes & pastries",
-      icon: ChefHat,
-      lessons: 12,
-      duration: "4 hours",
+      id: "maths-waec",
+      title: "WAEC Mathematics",
+      description: "Complete preparation for WAEC/NECO Mathematics exams",
+      icon: Calculator,
+      lessons: 24,
+      duration: "12 hours",
+      rating: 4.9,
+      progress: 0,
+      available: true,
+      difficulty: "Intermediate",
+    },
+    {
+      id: "english-waec",
+      title: "English Language",
+      description: "Master essay writing and comprehension for exams",
+      icon: BookOpen,
+      lessons: 20,
+      duration: "10 hours",
       rating: 4.8,
+      progress: 0,
+      available: true,
+      difficulty: "Intermediate",
+    },
+    {
+      id: "science-basic",
+      title: "Integrated Science",
+      description: "Core scientific concepts for Junior Secondary",
+      icon: FlaskConical,
+      lessons: 15,
+      duration: "8 hours",
+      rating: 4.7,
       progress: 0,
       available: true,
       difficulty: "Beginner",
     },
     {
-      id: "fashion",
-      title: "Fashion Design",
-      description: "Learn tailoring and sewing from basics to advanced",
-      icon: Scissors,
-      lessons: 18,
-      duration: "6 hours",
-      rating: 4.9,
-      progress: 0,
-      available: false,
-      difficulty: "Intermediate",
-    },
-    {
-      id: "welding",
-      title: "Welding Skills",
-      description: "Essential welding techniques for construction work",
-      icon: Wrench,
-      lessons: 15,
-      duration: "5 hours",
-      rating: 4.7,
+      id: "baking",
+      title: "Vocational: Baking",
+      description: "Master the fundamentals of bread, cakes & pastries",
+      icon: ChefHat,
+      lessons: 12,
+      duration: "4 hours",
+      rating: 4.8,
       progress: 0,
       available: false,
       difficulty: "Beginner",
@@ -60,7 +72,7 @@ function CoursesContent() {
         {/* Welcome Section */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Your Learning Dashboard</h1>
-          <p className="text-muted-foreground">Continue your journey to master valuable vocational skills</p>
+          <p className="text-muted-foreground">Access your exam preparation materials and vocational courses</p>
         </div>
 
         {/* Stats Cards */}
@@ -69,11 +81,11 @@ function CoursesContent() {
             <CardContent className="p-6">
               <div className="flex items-center gap-4">
                 <div className="p-3 bg-primary/10 rounded-full">
-                  <ChefHat className="h-6 w-6 text-primary" />
+                  <BookOpen className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">1</p>
-                  <p className="text-sm text-muted-foreground">Courses Enrolled</p>
+                  <p className="text-2xl font-bold">3</p>
+                  <p className="text-sm text-muted-foreground">Active Subjects</p>
                 </div>
               </div>
             </CardContent>

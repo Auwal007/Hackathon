@@ -9,13 +9,13 @@ import { ChatWidget } from "@/components/chat-widget"
 import { HeaderSwitcher } from "@/components/header-switcher"
 
 export const metadata: Metadata = {
-  title: "SkillHub Nigeria - Learn Vocational Skills",
+  title: "My Makaranta - Quality Education for Every Nigerian Child",
   description:
-    "Master practical skills like baking, tailoring, and welding with offline-ready lessons designed for Nigerian learners.",
+    "Empowering the next generation of Nigerians with quality education (WAEC, NECO, JAMB) and practical vocational skills through offline-ready learning technology.",
   generator: "v0.app",
   manifest: "/manifest.json",
-  keywords: ["vocational skills", "Nigeria", "baking", "tailoring", "welding", "offline learning"],
-  authors: [{ name: "SkillHub Nigeria" }],
+  keywords: ["education", "Nigeria", "WAEC", "NECO", "JAMB", "vocational skills", "offline learning"],
+  authors: [{ name: "My Makaranta" }],
   icons: {
     icon: "/skill-hub-logo-removebg-preview.png",
     shortcut: "/skill-hub-logo-removebg-preview.png",

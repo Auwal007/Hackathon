@@ -96,7 +96,10 @@ export default function ContactPage() {
 
                     {/* Contact Form */}
                     <div className="bg-[#1f2937] p-8 rounded-3xl border border-white/5 shadow-2xl">
-                        <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+                        <h3 className="text-2xl font-bold mb-6">Partner With Us</h3>
+                        <p className="text-gray-400 mb-6 text-sm">
+                            We are inviting investors, partners, and education stakeholders to join us in bringing digital learning to every child.
+                        </p>
                         <form className="space-y-6">
                             <div className="grid grid-cols-2 gap-6">
                                 <div className="space-y-2">
@@ -113,8 +116,18 @@ export default function ContactPage() {
                                 <Input className="bg-[#111828] border-white/10 text-white placeholder:text-gray-600 focus:border-[#2aab1a] focus:ring-[#2aab1a]" placeholder="john@example.com" type="email" />
                             </div>
                             <div className="space-y-2">
+                                <label className="text-sm font-medium text-gray-300">I represent a...</label>
+                                <select className="w-full h-10 rounded-md border border-white/10 bg-[#111828] px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#2aab1a]">
+                                    <option>School</option>
+                                    <option>NGO / Development Agency</option>
+                                    <option>Government Body</option>
+                                    <option>Investor</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-300">Message</label>
-                                <Textarea className="bg-[#111828] border-white/10 text-white placeholder:text-gray-600 focus:border-[#2aab1a] focus:ring-[#2aab1a] min-h-[150px]" placeholder="How can we help you?" />
+                                <Textarea className="bg-[#111828] border-white/10 text-white placeholder:text-gray-600 focus:border-[#2aab1a] focus:ring-[#2aab1a] min-h-[150px]" placeholder="How can we collaborate?" />
                             </div>
                             <Button className="w-full bg-[#2aab1a] hover:bg-[#228b15] text-white h-12 text-lg">
                                 Send Message <Send className="ml-2 h-4 w-4" />

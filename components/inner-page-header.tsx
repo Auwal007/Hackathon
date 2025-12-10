@@ -15,19 +15,22 @@ export function InnerPageHeader() {
         <div className="flex items-center justify-between">
           <div>
             <Link href="/" className="text-2xl font-bold text-primary">
-              SkillHub Nigeria
+              My Makaranta
             </Link>
           </div>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8 mx-auto">
-            <Link href="/courses" className="font-medium hover:text-emerald-600 transition-colors">
+            <Link href="/features" className="font-medium hover:text-primary transition-colors">
+              Features
+            </Link>
+            <Link href="/courses" className="font-medium hover:text-primary transition-colors">
               Courses
             </Link>
-            <Link href="/about" className="font-medium hover:text-emerald-600 transition-colors">
-              How It Works
+            <Link href="/about" className="font-medium hover:text-primary transition-colors">
+              About
             </Link>
-            <Link href="/contact" className="font-medium hover:text-emerald-600 transition-colors">
+            <Link href="/contact" className="font-medium hover:text-primary transition-colors">
               Contact
             </Link>
           </nav>

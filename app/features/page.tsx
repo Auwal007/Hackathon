@@ -51,22 +51,22 @@ export default function FeaturesPage() {
                 <div className="h-16 w-16 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-6">
                   <GraduationCap className="h-8 w-8" />
                 </div>
-                <h2 className="text-3xl font-bold mb-4">Academic Excellence</h2>
+                <h2 className="text-3xl font-bold mb-4">Exam Prep Center</h2>
                 <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                  Passing WAEC and JAMB is the gateway to higher education. My Makaranta provides comprehensive study materials, past questions, and AI-driven tutoring for core subjects.
+                  Passing WAEC, NECO, and JAMB is the gateway to higher education. My Makaranta provides comprehensive study materials, past questions, and AI-driven tutoring for core subjects.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-3 text-gray-300">
                     <CheckCircle className="h-5 w-5 text-blue-500" />
-                    <span>Complete Mathematics & English curriculum</span>
+                    <span>Video Lessons: Pause, rewind, and master complex topics</span>
                   </li>
                   <li className="flex items-center gap-3 text-gray-300">
                     <CheckCircle className="h-5 w-5 text-blue-500" />
-                    <span>10+ years of past questions & answers</span>
+                    <span>CBT Practice for WAEC, NECO, and JAMB</span>
                   </li>
                   <li className="flex items-center gap-3 text-gray-300">
                     <CheckCircle className="h-5 w-5 text-blue-500" />
-                    <span>CBT practice mode</span>
+                    <span>Essential Tools: Scientific calculator guides & study skills</span>
                   </li>
                 </ul>
               </div>
@@ -171,22 +171,22 @@ export default function FeaturesPage() {
                 <div className="h-16 w-16 rounded-2xl bg-purple-500/10 text-purple-500 flex items-center justify-center mb-6">
                   <BrainCircuit className="h-8 w-8" />
                 </div>
-                <h2 className="text-3xl font-bold mb-4">AI Business Coach</h2>
+                <h2 className="text-3xl font-bold mb-4">AI Smart Tutoring</h2>
                 <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                  Learning the skill is only half the battle. Turning it into income is the other half. Our integrated AI coach helps you bridge that gap.
+                  Stuck on a difficult math problem? Need help understanding a physics concept? Our AI Smart Tutor is available 24/7 to guide you.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-3 text-gray-300">
                     <CheckCircle className="h-5 w-5 text-purple-500" />
-                    <span>Generate business plans instantly</span>
+                    <span>Instant explanations for complex topics</span>
                   </li>
                   <li className="flex items-center gap-3 text-gray-300">
                     <CheckCircle className="h-5 w-5 text-purple-500" />
-                    <span>Calculate profit margins & pricing</span>
+                    <span>Step-by-step problem solving</span>
                   </li>
                   <li className="flex items-center gap-3 text-gray-300">
                     <CheckCircle className="h-5 w-5 text-purple-500" />
-                    <span>Draft marketing messages for WhatsApp</span>
+                    <span>Personalized study plans</span>
                   </li>
                 </ul>
               </div>
@@ -197,7 +197,7 @@ export default function FeaturesPage() {
                     <div className="flex gap-3">
                         <div className="h-8 w-8 rounded-full bg-gray-600 flex-shrink-0"></div>
                         <div className="bg-[#374151] p-3 rounded-2xl rounded-tl-none text-sm text-gray-200">
-                            I want to sell my bread. How much should I charge?
+                            I don't understand Quadratic Equations.
                         </div>
                     </div>
                     <div className="flex gap-3 flex-row-reverse">
@@ -205,7 +205,7 @@ export default function FeaturesPage() {
                             <BrainCircuit size={16} className="text-white" />
                         </div>
                         <div className="bg-purple-500/10 border border-purple-500/20 p-3 rounded-2xl rounded-tr-none text-sm text-gray-200">
-                            Based on current flour prices in Lagos, if your cost is ₦800 per loaf, I recommend a price of ₦1,200 to ensure a 33% profit margin. Here is a breakdown...
+                            No problem! A quadratic equation is just an equation where the highest power of x is 2. It looks like ax² + bx + c = 0. Let's solve a simple one together...
                         </div>
                     </div>
                   </div>
